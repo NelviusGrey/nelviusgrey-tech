@@ -23,14 +23,14 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-white">Navigation</h3>
           <div className="mt-4 grid gap-3">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
+              <Link prefetch={false} key={link.href} href={link.href} className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
                 {link.label}
               </Link>
             ))}
-            <Link href="/privacy" className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
+            <Link prefetch={false} href="/privacy" className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
               Privacy
             </Link>
-            <Link href="/terms" className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
+            <Link prefetch={false} href="/terms" className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
               Terms
             </Link>
           </div>
@@ -40,7 +40,7 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-white">Capabilities</h3>
           <div className="mt-4 grid gap-3">
             {serviceCapabilities.map((service) => (
-              <Link key={service.slug} href={`/services#${service.slug}`} className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
+              <Link prefetch={false} key={service.slug} href={`/services#${service.slug}`} className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
                 {service.title}
               </Link>
             ))}

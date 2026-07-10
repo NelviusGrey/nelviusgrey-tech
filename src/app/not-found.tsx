@@ -20,6 +20,7 @@ export default function NotFound() {
           Return home and continue exploring NelviusGrey Tech.
         </p>
         <Link
+          prefetch={false}
           href="/"
           className="mt-8 inline-flex h-12 items-center justify-center rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008]"
         >

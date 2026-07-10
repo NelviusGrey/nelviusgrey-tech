@@ -3,7 +3,7 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
 
-import { serviceCapabilities } from "@/lib/constants";
+import { serviceCapabilities, siteConfig } from "@/lib/constants";
 
 const projectStages = [
   "Exploring an idea",
@@ -24,9 +24,12 @@ const timelines = ["This month", "1-3 months", "3-6 months", "Flexible"] as cons
 
 type FormStatus =
   | { state: "idle" }
-  | { state: "loading" }
   | { state: "success"; message: string }
   | { state: "error"; message: string };
+
+function stringify(value: FormDataEntryValue | null) {
+  return typeof value === "string" ? value : "";
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>({ state: "idle" });
@@ -36,38 +39,46 @@ export function ContactForm() {
       className="border border-white/10 bg-[#060806]/80 p-5 sm:p-6"
       onSubmit={async (event) => {
         event.preventDefault();
-        setStatus({ state: "loading" });
 
         const form = event.currentTarget;
         const formData = new FormData(form);
-        const payload = Object.fromEntries(formData.entries());
 
-        try {
-          const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
-          const result = (await response.json()) as { ok?: boolean; message?: string };
+        if (!form.reportValidity()) {
+          return;
+        }
 
-          if (!response.ok || !result.ok) {
-            throw new Error(result.message ?? "Please review the form and try again.");
-          }
+        const subject = `Project enquiry from ${stringify(formData.get("organisation"))}`;
+        const body = [
+          `Full name: ${stringify(formData.get("fullName"))}`,
+          `Email: ${stringify(formData.get("email"))}`,
+          `Phone / WhatsApp: ${stringify(formData.get("phone"))}`,
+          `Organisation: ${stringify(formData.get("organisation"))}`,
+          `Service needed: ${stringify(formData.get("service"))}`,
+          `Project stage: ${stringify(formData.get("stage"))}`,
+          `Budget range: ${stringify(formData.get("budget"))}`,
+          `Timeline: ${stringify(formData.get("timeline"))}`,
+          "",
+          "Project description:",
+          stringify(formData.get("description")),
+        ].join("\n");
 
-          setStatus({
-            state: "success",
-            message: result.message ?? "Your project enquiry has been received.",
-          });
-          form.reset();
-        } catch (error) {
+        const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        if (mailto.length > 1900) {
           setStatus({
             state: "error",
             message:
-              error instanceof Error
-                ? error.message
-                : "Something went wrong. Please try again.",
+              "This message is a little too long for an email link. Please shorten it or use WhatsApp/phone above.",
           });
+          return;
         }
+
+        window.location.href = mailto;
+        setStatus({
+          state: "success",
+          message:
+            "Your email app should open with the enquiry prepared. Send it from there and we will reply.",
+        });
       }}
     >
       <div className="grid gap-4 sm:grid-cols-2">
@@ -147,10 +158,9 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled={status.state === "loading"}
-        className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 sm:w-auto"
       >
-        {status.state === "loading" ? "Sending enquiry..." : "Send Project Enquiry"}
+        Send Project Enquiry
         <Send className="h-4 w-4" />
       </button>
 

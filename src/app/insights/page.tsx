@@ -31,7 +31,7 @@ export default function InsightsPage() {
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {insights.map((article) => (
-              <Link key={article.slug} href={`/insights/${article.slug}`} className="group border border-white/10 bg-[#060806] p-5 transition hover:-translate-y-1 hover:border-[color:var(--brand-green)]/40">
+              <Link prefetch={false} key={article.slug} href={`/insights/${article.slug}`} className="group border border-white/10 bg-[#060806] p-5 transition hover:-translate-y-1 hover:border-[color:var(--brand-green)]/40">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={article.cover}

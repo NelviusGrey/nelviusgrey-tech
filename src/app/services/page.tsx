@@ -73,7 +73,7 @@ export default function ServicesPage() {
                       </span>
                     ))}
                   </div>
-                  <Link href="/contact" className="mt-6 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
+                  <Link prefetch={false} href="/contact" className="mt-6 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
                     Discuss this service
                   </Link>
                 </div>

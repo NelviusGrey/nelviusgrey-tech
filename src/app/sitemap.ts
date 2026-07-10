@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 
 import { insights, navLinks, siteConfig, workCases } from "@/lib/constants";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     ...navLinks.map((link) => link.href),

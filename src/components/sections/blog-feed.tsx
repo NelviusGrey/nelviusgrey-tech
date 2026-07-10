@@ -1,68 +1,30 @@
 "use client";
 
-import { Loader2, SearchX } from "lucide-react";
+import { SearchX } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
-import { insightCategories, type InsightCategory } from "@/lib/constants";
+import { insightCategories, insights, type InsightCategory } from "@/lib/constants";
 import type { TechArticle } from "@/lib/news";
 import { formatDate } from "@/lib/utils";
 
-type ApiResponse = {
-  source: "newsapi" | "fallback";
-  articles: TechArticle[];
-  message?: string;
-};
-
 export function BlogFeed() {
   const [category, setCategory] = useState<InsightCategory>("All");
-  const [articles, setArticles] = useState<TechArticle[]>([]);
-  const [source, setSource] = useState<ApiResponse["source"]>("fallback");
-  const [message, setMessage] = useState<string | undefined>();
-  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+  const articles = useMemo<TechArticle[]>(() => {
+    const filtered =
+      category === "All" ? insights : insights.filter((article) => article.category === category);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadArticles() {
-      setStatus("loading");
-      try {
-        const response = await fetch(`/api/tech-news?category=${encodeURIComponent(category)}`, {
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error("Unable to load articles");
-        }
-
-        const payload = (await response.json()) as ApiResponse;
-        setArticles(payload.articles);
-        setSource(payload.source);
-        setMessage(payload.message);
-        setStatus("ready");
-      } catch (error) {
-        if (controller.signal.aborted) {
-          return;
-        }
-
-        setArticles([]);
-        setMessage(error instanceof Error ? error.message : "Unable to load articles");
-        setStatus("error");
-      }
-    }
-
-    loadArticles();
-
-    return () => controller.abort();
+    return filtered.map((article) => ({
+      title: article.title,
+      source: article.author,
+      publishedAt: article.date,
+      description: article.description,
+      url: `/insights/${article.slug}`,
+      imageUrl: article.cover,
+      category: article.category,
+      isPlaceholder: true,
+    }));
   }, [category]);
-
-  const sourceLabel = useMemo(() => {
-    if (source === "newsapi") {
-      return "Live technology news";
-    }
-
-    return "Insights Coming Soon";
-  }, [source]);
 
   return (
     <div>
@@ -84,30 +46,11 @@ export function BlogFeed() {
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/[0.035] px-4 py-3">
-        <p className="text-sm font-medium text-white/70">{sourceLabel}</p>
-        {message && <p className="text-xs text-[color:var(--brand-green)]">{message}</p>}
+        <p className="text-sm font-medium text-white/70">NelviusGrey insights</p>
+        <p className="text-xs text-[color:var(--brand-green)]">Curated internal notes</p>
       </div>
 
-      {status === "loading" && (
-        <div className="mt-12 grid min-h-64 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-white/64">
-          <div className="flex items-center gap-3 text-sm">
-            <Loader2 className="h-5 w-5 animate-spin text-[color:var(--brand-green)]" />
-            Loading technology insights
-          </div>
-        </div>
-      )}
-
-      {status === "error" && (
-        <div className="mt-12 grid min-h-64 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-center text-white/64">
-          <div>
-            <SearchX className="mx-auto mb-4 h-8 w-8 text-[color:var(--brand-green)]" />
-            <p className="font-medium text-white">We could not load articles right now.</p>
-            <p className="mt-2 text-sm text-white/55">{message}</p>
-          </div>
-        </div>
-      )}
-
-      {status === "ready" && articles.length === 0 && (
+      {articles.length === 0 && (
         <div className="mt-12 grid min-h-64 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-center">
           <div>
             <SearchX className="mx-auto mb-4 h-8 w-8 text-[color:var(--brand-green)]" />
@@ -117,7 +60,7 @@ export function BlogFeed() {
         </div>
       )}
 
-      {status === "ready" && articles.length > 0 && (
+      {articles.length > 0 && (
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {articles.map((article) => (
             <article

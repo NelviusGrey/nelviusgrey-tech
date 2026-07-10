@@ -105,7 +105,7 @@ export default async function WorkCasePage({
             </div>
           </article>
           <div className="border-t border-white/10 pt-8">
-            <Link href="/work" className="text-sm font-semibold text-[color:var(--brand-green)]">
+            <Link prefetch={false} href="/work" className="text-sm font-semibold text-[color:var(--brand-green)]">
               Back to all work
             </Link>
           </div>

@@ -109,7 +109,7 @@ export default function AboutPage() {
               users, shape the data, design the workflow and build systems that can
               be improved over time.
             </p>
-            <Link href={siteConfig.links.founderLinkedIn} target="_blank" rel="noreferrer" className="mt-8 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
+            <Link prefetch={false} href={siteConfig.links.founderLinkedIn} target="_blank" rel="noreferrer" className="mt-8 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
               View founder profile
             </Link>
           </Reveal>

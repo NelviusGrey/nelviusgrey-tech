@@ -69,7 +69,7 @@ export function HomeSections() {
                     </p>
                   ))}
                 </div>
-                <Link
+                <Link prefetch={false}
                   href={`/services#${service.slug}`}
                   className="mt-7 inline-flex text-sm font-semibold text-[color:var(--brand-green)]"
                 >
@@ -146,7 +146,7 @@ export function HomeSections() {
               product development, data systems, climate technology, social-impact
               technology and practical automation for African contexts.
             </p>
-            <Link href="/about" className="mt-8 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
+            <Link prefetch={false} href="/about" className="mt-8 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
               Read the founder story
             </Link>
           </Reveal>
@@ -163,7 +163,7 @@ export function HomeSections() {
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {insights.slice(0, 3).map((article, index) => (
               <Reveal key={article.slug} delay={index * 0.04}>
-                <Link href={`/insights/${article.slug}`} className="group block border border-white/10 bg-[#060806] p-5 transition hover:-translate-y-1 hover:border-[color:var(--brand-green)]/40">
+                <Link prefetch={false} href={`/insights/${article.slug}`} className="group block border border-white/10 bg-[#060806] p-5 transition hover:-translate-y-1 hover:border-[color:var(--brand-green)]/40">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={article.cover}

@@ -42,7 +42,7 @@ export function Navbar() {
         )}
         aria-label="Main navigation"
       >
-        <Link href="/" aria-label="NelviusGrey Tech home" className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-[color:var(--brand-green)]">
+        <Link prefetch={false} href="/" aria-label="NelviusGrey Tech home" className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-[color:var(--brand-green)]">
           <BrandMark />
         </Link>
 
@@ -51,7 +51,7 @@ export function Navbar() {
             const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
 
             return (
-              <Link
+              <Link prefetch={false}
                 key={link.href}
                 href={link.href}
                 className={cn(
@@ -66,7 +66,7 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
+          <Link prefetch={false}
             href="/contact"
             className="inline-flex h-10 items-center gap-2 rounded-md bg-[color:var(--brand-green)] px-4 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 hover:shadow-[0_0_28px_var(--brand-glow)]"
           >
@@ -109,7 +109,7 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.045, duration: 0.35 }}
                     >
-                      <Link
+                      <Link prefetch={false}
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className={cn(
@@ -128,7 +128,7 @@ export function Navbar() {
               </div>
 
               <div className="grid gap-3 text-sm text-white/58">
-                <Link
+                <Link prefetch={false}
                   href="/contact"
                   onClick={() => setIsOpen(false)}
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-5 font-semibold text-[#021008]"

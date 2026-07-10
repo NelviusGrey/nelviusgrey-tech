@@ -18,6 +18,7 @@ export function ServiceCard({ service, index }: { service: Service; index: numbe
       <h3 className="text-xl font-semibold tracking-tight text-white">{service.title}</h3>
       <p className="mt-4 flex-1 text-sm leading-7 text-white/62">{service.summary}</p>
       <Link
+        prefetch={false}
         href={`/services#${service.slug}`}
         className="mt-7 text-sm font-semibold text-[color:var(--brand-green)] transition hover:text-white"
       >

@@ -22,6 +22,7 @@ export function FinalCta() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
+              prefetch={false}
               href="/contact"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008]"
             >

@@ -35,6 +35,7 @@ export function WorkFilter() {
       <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {visible.map((item, index) => (
           <Link
+            prefetch={false}
             key={item.slug}
             href={`/work/${item.slug}`}
             className={cn(

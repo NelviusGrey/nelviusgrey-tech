@@ -51,6 +51,7 @@ export function HomeHero() {
             className="mt-10 flex flex-col items-start gap-3 sm:flex-row"
           >
             <Link
+              prefetch={false}
               href="/contact"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 hover:shadow-[0_0_34px_var(--brand-glow)]"
             >
@@ -58,6 +59,7 @@ export function HomeHero() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
+              prefetch={false}
               href="/work"
               className="inline-flex h-12 items-center justify-center rounded-md border border-white/14 bg-white/[0.03] px-6 text-sm font-semibold text-white transition hover:border-[color:var(--brand-green)]/50"
             >

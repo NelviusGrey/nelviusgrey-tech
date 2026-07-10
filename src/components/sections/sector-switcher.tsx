@@ -79,7 +79,7 @@ export function SectorSwitcher() {
 
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/42">{active.visual}</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand-green)]">
+          <Link prefetch={false} href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand-green)]">
             Discuss this sector
             <ArrowUpRight className="h-4 w-4" />
           </Link>

@@ -40,6 +40,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           ))}
         </div>
         <Link
+          prefetch={false}
           href={`/work/${project.slug}`}
           className="mt-6 inline-flex text-sm font-semibold text-[color:var(--brand-green)] transition hover:text-white"
         >

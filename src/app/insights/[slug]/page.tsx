@@ -88,7 +88,7 @@ export default async function InsightPage({
                 </p>
               ))}
             </div>
-            <Link href="/insights" className="mt-10 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
+            <Link prefetch={false} href="/insights" className="mt-10 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
               Back to insights
             </Link>
           </div>
