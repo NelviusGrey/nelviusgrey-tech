@@ -1,181 +1,193 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { AnimatedCounter } from "@/components/animations/animated-counter";
 import { Reveal } from "@/components/animations/reveal";
-import { ProjectCard } from "@/components/cards/project-card";
-import { ServiceCard } from "@/components/cards/service-card";
+import { CapabilityMarquee } from "@/components/sections/capability-marquee";
+import { FinalCta } from "@/components/sections/final-cta";
+import { SectorSwitcher } from "@/components/sections/sector-switcher";
+import { WorkFilter } from "@/components/sections/work-filter";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
+  insights,
   processSteps,
-  projects,
-  services,
+  serviceCapabilities,
   siteConfig,
-  stats,
-  whyChooseUs,
 } from "@/lib/constants";
 
 export function HomeSections() {
   return (
     <>
-      <section className="relative px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section id="brand-statement" className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem]">
           <Reveal>
-            <SectionHeading
-              eyebrow="Purpose-built technology"
-              title="A Nigerian innovation company building practical systems with global ambition."
-              description="NelviusGrey Tech is a purpose-driven technology company founded by Ighere G. Nelson. We combine technical execution, creative problem-solving, data thinking, and sector awareness to build tools that are beautiful, useful, scalable, and impact-driven."
-            />
-            <Link
-              href="/about"
-              className="mt-8 inline-flex h-11 items-center gap-2 rounded-md border border-white/14 px-5 text-sm font-semibold text-white transition hover:border-[color:var(--brand-green)]/50 hover:bg-[color:var(--brand-green-soft)]"
-            >
-              Learn About Us
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
-
-          <Reveal delay={0.08} className="relative overflow-hidden rounded-lg border border-white/10">
-            <Image
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=82"
-              alt="Professionals collaborating in a strategy and technology meeting"
-              width={1400}
-              height={900}
-              unoptimized
-              className="h-full max-h-[460px] w-full object-cover opacity-[0.82]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030604] via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 grid gap-4 p-5 sm:grid-cols-3">
-              {stats.map((stat) => (
-                <div key={stat.label} className="rounded-md border border-white/10 bg-black/50 p-4 backdrop-blur">
-                  <AnimatedCounter
-                    value={stat.value}
-                    suffix={stat.suffix}
-                    className="font-mono text-3xl font-semibold text-[color:var(--brand-green)]"
-                  />
-                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/52">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--brand-green)]">
+              Engineering / Data / Design
+            </p>
+            <h2 className="mt-8 max-w-6xl font-display text-5xl font-light leading-[0.98] tracking-[-0.07em] text-white sm:text-7xl lg:text-8xl">
+              We combine engineering, data and design to turn complex problems into systems people can actually use.
+            </h2>
           </Reveal>
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <CapabilityMarquee />
+
+      <section className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem]">
           <SectionHeading
-            eyebrow="Core services"
-            title="Digital products, data systems, and infrastructure built for real operations."
-            description="From public-facing platforms to internal systems, NelviusGrey Tech designs technology that helps teams work smarter, report clearly, and serve users with confidence."
+            eyebrow="Selected work"
+            title="Project-led systems for climate, data, business and social impact."
+            description="Where approved screenshots are unavailable, visuals are presented as conceptual or demo representations. The work descriptions stay honest and avoid invented outcomes."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {services.map((service, index) => (
-              <ServiceCard key={service.title} service={service} index={index} />
-            ))}
+          <div className="mt-12">
+            <WorkFilter />
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Why choose us"
-              title="Technology design that understands both the system and the field."
-              description="We design with the business process, sector context, end users, reporting requirements, and long-term maintainability in view."
-            />
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {whyChooseUs.map((item, index) => (
-              <Reveal
-                key={item}
-                delay={index * 0.04}
-                className="flex min-h-24 gap-4 rounded-lg border border-white/10 bg-white/[0.035] p-5"
-              >
-                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[color:var(--brand-green)]" />
-                <p className="text-base font-medium text-white/82">{item}</p>
+      <section className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem]">
+          <SectionHeading
+            eyebrow="Core capabilities"
+            title="Six ways we turn real operational pressure into intelligent digital systems."
+            description="Each capability connects product thinking, data structure, interface design and practical implementation."
+          />
+          <div className="mt-12 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-3">
+            {serviceCapabilities.map((service, index) => (
+              <Reveal key={service.slug} delay={index * 0.035} className="bg-[#060806] p-6 sm:p-8">
+                <p className="font-mono text-xs text-[color:var(--brand-green)]">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-8 font-display text-3xl font-light tracking-[-0.06em] text-white">
+                  {service.title}
+                </h3>
+                <p className="mt-5 text-sm leading-7 text-white/62">{service.summary}</p>
+                <div className="mt-7 grid gap-2">
+                  {service.deliverables.slice(0, 4).map((item) => (
+                    <p key={item} className="border-t border-white/10 pt-2 text-sm text-white/46">
+                      {item}
+                    </p>
+                  ))}
+                </div>
+                <Link
+                  href={`/services#${service.slug}`}
+                  className="mt-7 inline-flex text-sm font-semibold text-[color:var(--brand-green)]"
+                >
+                  Explore capability
+                </Link>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading
-              eyebrow="Selected work"
-              title="Solution concepts and project directions with practical value."
-              description="A snapshot of the kind of systems NelviusGrey Tech builds and supports across impact, business, analytics, and web development."
-            />
-            <Link
-              href="/projects"
-              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-white/14 px-5 text-sm font-semibold text-white transition hover:border-[color:var(--brand-green)]/50 hover:bg-[color:var(--brand-green-soft)]"
-            >
-              View Projects
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
+      <section className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem]">
+          <SectionHeading
+            eyebrow="Sector solutions"
+            title="African-rooted systems for institutions, businesses and programmes with real constraints."
+            description="The active sector changes the operational challenge, common pain points, workflow and solution direction."
+          />
+          <div className="mt-12">
+            <SectorSwitcher />
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Process"
-            title="How We Turn Ideas Into Working Systems"
-            description="A focused delivery path for moving from a real-world problem to a system people can actually use."
-            align="center"
-          />
-          <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+      <section className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-[88rem] gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Operating philosophy"
+              title="Useful technology begins with the real problem."
+              description="The process is calm, structured and designed to move from uncertainty to a working system without losing the people who will use it."
+            />
+          </Reveal>
+          <div className="grid gap-3">
             {processSteps.map((step, index) => (
               <Reveal
                 key={step.title}
-                delay={index * 0.04}
-                className="relative rounded-lg border border-white/10 bg-white/[0.035] p-5"
+                delay={index * 0.035}
+                className="grid gap-5 border border-white/10 bg-white/[0.025] p-5 sm:grid-cols-[8rem_1fr]"
               >
-                <span className="font-mono text-sm text-[color:var(--brand-green)]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-5 text-lg font-semibold text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/58">{step.text}</p>
+                <p className="font-mono text-xs uppercase tracking-[0.24em] text-[color:var(--brand-green)]">
+                  {String(index + 1).padStart(2, "0")} - {step.title}
+                </p>
+                <p className="text-sm leading-7 text-white/62">{step.text}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <Reveal className="mx-auto max-w-7xl overflow-hidden rounded-lg border border-[color:var(--brand-green)]/22 bg-[linear-gradient(135deg,rgba(0,164,56,0.14),rgba(255,255,255,0.035))] p-8 sm:p-10 lg:p-14">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[color:var(--brand-green)]">
-                Build with NelviusGrey Tech
-              </p>
-              <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                Ready to build something intelligent?
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/68">
-                Tell us what you want to build. We will help you shape it into a
-                practical digital solution.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 hover:shadow-[0_0_34px_var(--brand-glow)]"
-            >
-              Work With {siteConfig.name}
-              <ArrowRight className="h-4 w-4" />
+      <section className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-[88rem] gap-10 border-y border-white/10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <Reveal className="relative min-h-[34rem] overflow-hidden bg-[#070908]">
+            <Image
+              src={siteConfig.brand.founderPhoto}
+              alt="Ighere G. Nelson, Founder and Chief Innovation Technologist of NelviusGrey Tech"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-contain object-bottom"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030504] via-transparent to-transparent" />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--brand-green)]">
+              Founder preview
+            </p>
+            <h2 className="mt-6 font-display text-5xl font-light tracking-[-0.07em] text-white sm:text-7xl">
+              Ighere G. Nelson
+            </h2>
+            <p className="mt-3 text-white/54">{siteConfig.founder.title}</p>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-white/66">
+              A Computer Science graduate and technology builder working across digital
+              product development, data systems, climate technology, social-impact
+              technology and practical automation for African contexts.
+            </p>
+            <Link href="/about" className="mt-8 inline-flex text-sm font-semibold text-[color:var(--brand-green)]">
+              Read the founder story
             </Link>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
+
+      <section className="px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem]">
+          <SectionHeading
+            eyebrow="Insights"
+            title="Thinking about systems that survive beyond launch."
+            description="Internally authored notes on social impact technology, useful data, climate intelligence and practical automation."
+          />
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {insights.slice(0, 3).map((article, index) => (
+              <Reveal key={article.slug} delay={index * 0.04}>
+                <Link href={`/insights/${article.slug}`} className="group block border border-white/10 bg-[#060806] p-5 transition hover:-translate-y-1 hover:border-[color:var(--brand-green)]/40">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={article.cover}
+                      alt={article.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      unoptimized
+                      className="object-cover opacity-[0.58] transition duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="mt-5 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--brand-green)]">
+                    {article.category} / {article.readingTime}
+                  </p>
+                  <h3 className="mt-4 font-display text-2xl font-light tracking-[-0.05em] text-white">
+                    {article.title}
+                  </h3>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FinalCta />
     </>
   );
 }

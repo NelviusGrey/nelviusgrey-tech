@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/animations/reveal";
 import { Icon } from "@/components/ui/icon";
-import type { services } from "@/lib/constants";
+import type { serviceCapabilities } from "@/lib/constants";
 
-type Service = (typeof services)[number];
+type Service = (typeof serviceCapabilities)[number];
 
 export function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
@@ -18,7 +18,7 @@ export function ServiceCard({ service, index }: { service: Service; index: numbe
       <h3 className="text-xl font-semibold tracking-tight text-white">{service.title}</h3>
       <p className="mt-4 flex-1 text-sm leading-7 text-white/62">{service.summary}</p>
       <Link
-        href="/services"
+        href={`/services#${service.slug}`}
         className="mt-7 text-sm font-semibold text-[color:var(--brand-green)] transition hover:text-white"
       >
         View deliverables

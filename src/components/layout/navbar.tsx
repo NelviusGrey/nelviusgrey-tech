@@ -1,12 +1,13 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { BrandMark } from "@/components/ui/brand-mark";
-import { navLinks } from "@/lib/constants";
+import { navLinks, siteConfig } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -15,39 +16,47 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    const onScroll = () => setIsScrolled(window.scrollY > 18);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-6 lg:px-8">
       <nav
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between rounded-lg border px-4 py-3 transition-all duration-300",
+          "relative z-[55] mx-auto flex max-w-[88rem] items-center justify-between border px-4 py-3 transition-all duration-300",
           isScrolled
-            ? "border-white/12 bg-[#050907]/86 shadow-2xl shadow-black/35 backdrop-blur-xl"
-            : "border-white/8 bg-[#050907]/42 backdrop-blur-md",
+            ? "rounded-lg border-white/12 bg-[#060806]/88 shadow-2xl shadow-black/30 backdrop-blur-xl"
+            : "rounded-none border-transparent bg-transparent",
         )}
         aria-label="Main navigation"
       >
-        <Link href="/" aria-label="NelviusGrey Tech home">
+        <Link href="/" aria-label="NelviusGrey Tech home" className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-[color:var(--brand-green)]">
           <BrandMark />
         </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
-            const active = pathname === link.href;
+            const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium text-white/62 transition hover:bg-white/7 hover:text-white",
-                  active && "bg-[color:var(--brand-green-soft)] text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium text-white/58 transition hover:bg-white/[0.06] hover:text-white",
+                  active && "bg-white/[0.07] text-white",
                 )}
               >
                 {link.label}
@@ -68,7 +77,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="grid h-10 w-10 place-items-center rounded-md border border-white/12 text-white transition hover:border-[color:var(--brand-green)]/50 hover:text-[color:var(--brand-green)] lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-md border border-white/12 bg-black/20 text-white transition hover:border-[color:var(--brand-green)]/50 hover:text-[color:var(--brand-green)] lg:hidden"
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
@@ -77,37 +86,64 @@ export function Navbar() {
         </button>
       </nav>
 
-      {isOpen && (
-        <div className="mx-auto mt-3 max-w-7xl rounded-lg border border-white/12 bg-[#050907]/95 p-3 shadow-2xl shadow-black/40 backdrop-blur-xl lg:hidden">
-          <div className="grid gap-1">
-            {navLinks.map((link) => {
-              const active = pathname === link.href;
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "rounded-md px-4 py-3 text-sm font-medium text-white/70 transition hover:bg-white/7 hover:text-white",
-                    active && "bg-[color:var(--brand-green-soft)] text-white",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-4 text-sm font-semibold text-[#021008]"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[45] bg-[#030504]/98 px-4 pb-8 pt-28 backdrop-blur-xl lg:hidden"
           >
-            Start a Project
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </div>
-      )}
+            <div className="site-grid absolute inset-0 opacity-[0.35]" aria-hidden="true" />
+            <div className="relative mx-auto flex h-full max-w-2xl flex-col justify-between">
+              <div className="grid gap-2">
+                {navLinks.map((link, index) => {
+                  const active =
+                    pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.045, duration: 0.35 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "flex items-center justify-between border-b border-white/10 py-5 font-display text-4xl font-light tracking-[-0.06em] text-white/70 transition hover:text-white",
+                          active && "text-white",
+                        )}
+                      >
+                        {link.label}
+                        <span className="font-mono text-xs tracking-[0.24em] text-[color:var(--brand-green)]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <div className="grid gap-3 text-sm text-white/58">
+                <Link
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-5 font-semibold text-[#021008]"
+                >
+                  Start a Project
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+                <a href={siteConfig.links.whatsapp} target="_blank" rel="noreferrer" className="text-center">
+                  WhatsApp {siteConfig.phone[0]}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

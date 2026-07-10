@@ -1,9 +1,11 @@
 export const siteConfig = {
   name: "NelviusGrey Tech",
   tagline: "Technology for Change. Systems for the Future.",
+  shortTagline: "Smart Solutions. Bold Designs.",
   url: "https://nelviusgrey.com.ng",
-  address: "08, Oseni Liadi Street, Okota Isolo, Lagos, Nigeria",
-  phone: ["09035308940", "09043708371"],
+  legacyUrl: "https://nelviusgreytech.wixsite.com/nelviusgrey-tech",
+  address: "No. 8 Oseni Liadi Street, Okota, Isolo, Lagos, Nigeria",
+  phone: ["+234 904 370 8371", "+234 903 530 8940"],
   email: {
     founder: "nelson@nelviusgreytech.com.ng",
     support: "support@nelviusgreytech.com.ng",
@@ -15,9 +17,16 @@ export const siteConfig = {
   links: {
     companyLinkedIn: "https://www.linkedin.com/company/nelviusgrey-tech",
     founderLinkedIn: "https://www.linkedin.com/in/nelson-ighere-581103237/",
-    whatsapp: "https://wa.me/2349035308940",
+    facebook: "https://web.facebook.com/people/NelviusGrey-Tech/61554331096325/",
+    whatsapp: "https://wa.me/2349043708371",
     privacyPolicy:
       "https://drive.google.com/uc?export=download&id=1F_l1xKGyJmTpD3BT6Q9EdZmlke64Oiqb",
+  },
+  brand: {
+    green: "#00a438",
+    logoPath: "/brand/logo-mark.png",
+    fullLogoSource: "/images/logo/nelviusgrey-tech-logo.png",
+    founderPhoto: "/images/founder/ighere-g-nelson.png",
   },
 } as const;
 
@@ -26,8 +35,8 @@ export const navLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Solutions", href: "/solutions" },
-  { label: "Projects", href: "/projects" },
-  { label: "Insights", href: "/blog" },
+  { label: "Work", href: "/work" },
+  { label: "Insights", href: "/insights" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -51,336 +60,571 @@ export type IconName =
   | "Map"
   | "FileText";
 
-export const trustPoints = [
-  "Web & App Development",
-  "Data Systems & Dashboards",
-  "Climate-Tech & GIS Solutions",
-  "NGO / Humanitarian MIS",
-  "Business Automation",
-  "IT Infrastructure Advisory",
+export const capabilityTicker = [
+  "Digital Products",
+  "Data Systems",
+  "ClimateTech",
+  "GIS",
+  "Automation",
+  "Social Impact",
+  "AI Workflows",
+  "Digital Transformation",
 ] as const;
 
-export const stats = [
-  { value: 8, suffix: "+", label: "solution domains" },
-  { value: 6, suffix: "", label: "core service lines" },
-  { value: 24, suffix: "/7", label: "support mindset" },
-  { value: 1, suffix: "", label: "mission-led studio" },
-] as const;
-
-export const services = [
+export const serviceCapabilities = [
   {
-    title: "Website & Web App Development",
+    slug: "digital-products-platforms",
+    title: "Digital Products and Platforms",
     icon: "Code2" satisfies IconName,
     summary:
-      "Modern, responsive, fast, and professional websites and web applications for brands, businesses, organizations, and institutions.",
+      "Websites, portals, applications, and product prototypes designed for real users, real workflows, and long-term maintainability.",
+    problems: [
+      "Weak digital presence",
+      "Manual customer or stakeholder journeys",
+      "Unclear product direction",
+      "Fragmented public and internal tools",
+    ],
     deliverables: [
       "Corporate websites",
-      "Landing pages",
-      "Web apps",
-      "Admin dashboards",
-      "Portals",
-      "Booking/contact systems",
-      "SEO-ready websites",
+      "Web applications",
+      "Mobile application concepts",
+      "Client portals",
+      "Internal platforms",
+      "Product prototypes",
     ],
+    audience: "Businesses, consultants, SMEs, NGOs, founders, and institutions launching or improving digital products.",
+    related: ["UI/UX", "Content systems", "SEO", "Analytics", "Integrations"],
   },
   {
-    title: "Custom IT Infrastructure & Digital Systems",
-    icon: "Network" satisfies IconName,
-    summary:
-      "Digital operating systems that help organizations coordinate work, capture data, document processes, and scale with confidence.",
-    deliverables: [
-      "Workflow systems",
-      "Internal tools",
-      "Data collection systems",
-      "Reporting infrastructure",
-      "Cloud-ready architectures",
-      "System planning and documentation",
-    ],
-  },
-  {
-    title: "Data Analytics, Dashboards & Reporting",
+    slug: "data-systems-decision-intelligence",
+    title: "Data Systems and Decision Intelligence",
     icon: "BarChart3" satisfies IconName,
     summary:
-      "Clear insight layers that turn raw records into dashboards, reports, monitoring views, and decision-support tools.",
-    deliverables: [
-      "KPI dashboards",
-      "Data cleaning and structuring",
-      "Excel/Google Sheets automation",
-      "Power BI / Python dashboards",
-      "Executive reports",
-      "Monitoring and evaluation dashboards",
+      "Management information systems, dashboards, and reporting workflows that help organizations turn scattered data into decisions.",
+    problems: [
+      "Messy spreadsheets",
+      "Slow reporting cycles",
+      "Limited performance visibility",
+      "Data that is collected but not used",
     ],
+    deliverables: [
+      "Dashboards",
+      "Management information systems",
+      "Data pipelines",
+      "Reporting automation",
+      "Analytics platforms",
+      "Monitoring systems",
+    ],
+    audience: "Leadership teams, MEL units, operations teams, programmes, and data-heavy organizations.",
+    related: ["Data modelling", "Power BI/Python", "MEL", "Automation", "Executive reporting"],
   },
   {
-    title: "Climate-Tech, GIS & Environmental Solutions",
+    slug: "climatetech-geospatial",
+    title: "ClimateTech and Geospatial Solutions",
     icon: "Leaf" satisfies IconName,
     summary:
-      "Climate, carbon, emissions, geospatial, sustainability, and environmental intelligence concepts for organizations working on transition and resilience.",
-    deliverables: [
-      "Climate dashboards",
-      "GIS-enabled platforms",
-      "Emissions tracking tools",
-      "MRV/dMRV concepts",
-      "Climate-risk visualization",
-      "Sustainability reporting support",
-      "Location intelligence tools",
+      "Climate-risk, emissions, GIS, and environmental intelligence interfaces for institutions working on sustainability and resilience.",
+    problems: [
+      "Hard-to-interpret climate data",
+      "Weak spatial visibility",
+      "Manual emissions or portfolio analysis",
+      "Limited MRV and environmental reporting structure",
     ],
+    deliverables: [
+      "Climate-risk platforms",
+      "Emissions tools",
+      "Geospatial monitoring",
+      "Remote-sensing interfaces",
+      "Portfolio analysis",
+      "MRV and environmental-data systems",
+    ],
+    audience: "Climate teams, development organizations, finance actors, public institutions, and sustainability programmes.",
+    related: ["GIS", "Climate analytics", "Data visualization", "Reporting", "Environmental intelligence"],
   },
   {
-    title: "NGO, Humanitarian & Social Impact Systems",
+    slug: "social-impact-mel",
+    title: "Social-Impact and MEL Systems",
     icon: "HeartHandshake" satisfies IconName,
     summary:
-      "Human-centered digital tools for program visibility, beneficiary tracking, reporting, data collection, and field operations.",
-    deliverables: [
-      "Beneficiary management systems",
-      "Case management tools",
-      "Program dashboards",
-      "M&E reporting tools",
-      "Training/capacity-building support",
-      "Data collection forms",
-      "Impact reporting systems",
+      "Field-aware programme systems for beneficiary records, case management, surveys, evidence tracking, and impact reporting.",
+    problems: [
+      "Scattered beneficiary data",
+      "Manual programme records",
+      "Slow donor or management reporting",
+      "Weak field-to-office data flow",
     ],
+    deliverables: [
+      "Beneficiary databases",
+      "Case-management systems",
+      "Programme dashboards",
+      "Survey workflows",
+      "Impact reporting",
+      "Field-data systems",
+    ],
+    audience: "NGOs, CBOs, foundations, humanitarian actors, development programmes, and community initiatives.",
+    related: ["MEL", "Beneficiary tracking", "Forms", "Dashboards", "Training support"],
   },
   {
-    title: "Business Automation & Digital Transformation",
-    icon: "Workflow" satisfies IconName,
+    slug: "ai-workflows-automation",
+    title: "AI Workflows and Business Automation",
+    icon: "BrainCircuit" satisfies IconName,
     summary:
-      "Smart workflows that reduce manual work, improve operations, and give teams cleaner ways to serve customers and manage records.",
-    deliverables: [
-      "Process automation",
-      "Invoice and receipt systems",
-      "CRM-style tools",
-      "Digital forms",
-      "Document generation",
-      "Reporting workflows",
-      "AI-assisted business tools",
+      "Practical automation and AI-assisted workflows that reduce repetitive work without making teams depend on fragile black boxes.",
+    problems: [
+      "Repetitive administrative tasks",
+      "Manual document handling",
+      "Slow internal knowledge retrieval",
+      "Reporting that consumes too much team time",
     ],
+    deliverables: [
+      "Workflow automation",
+      "Document processing",
+      "Intelligent assistants",
+      "Internal knowledge tools",
+      "Reporting automation",
+      "Practical AI integrations",
+    ],
+    audience: "SMEs, service businesses, operations teams, founders, admin teams, and organizations ready to improve internal workflows.",
+    related: ["Process design", "Data systems", "AI-assisted tools", "Internal platforms", "Reporting"],
+  },
+  {
+    slug: "technology-advisory",
+    title: "Digital Transformation and Technology Advisory",
+    icon: "ServerCog" satisfies IconName,
+    summary:
+      "Discovery, strategy, system architecture, and implementation support for organizations modernizing how they work.",
+    problems: [
+      "Unclear digital strategy",
+      "Disconnected tools",
+      "Poor technical documentation",
+      "Technology investments without adoption",
+    ],
+    deliverables: [
+      "Digital strategy",
+      "Product discovery",
+      "System architecture",
+      "Technical assessments",
+      "Process digitisation",
+      "Implementation support",
+    ],
+    audience: "Executives, institutions, programme leaders, growing teams, and organizations planning complex digital work.",
+    related: ["Discovery", "Architecture", "Documentation", "Vendor support", "Implementation planning"],
   },
 ] as const;
 
-export const whyChooseUs = [
-  "Sector-aware technology design",
-  "Practical and scalable systems",
-  "Clean user experience",
-  "Data-driven thinking",
-  "Innovation-first approach",
-  "Built for real-world users",
+export type ServiceCapability = (typeof serviceCapabilities)[number];
+
+export const sectorSolutions = [
+  {
+    slug: "climate-sustainability",
+    title: "Climate and Sustainability",
+    challenge: "Climate teams need clearer ways to collect, interpret, map, and communicate environmental intelligence.",
+    painPoints: ["Fragmented climate data", "Manual reporting", "Weak spatial evidence", "Difficult portfolio analysis"],
+    solutionTypes: ["Climate dashboards", "GIS tools", "Emissions workflows", "Risk intelligence interfaces"],
+    workflow: "Collect project or portfolio data, structure indicators, visualize risks and emissions, then generate decision-ready reporting views.",
+    visual: "A green ridge-map of data points becoming a climate intelligence layer.",
+    relatedProjects: ["finz-fint-climate-finance-platform", "sbti-temperature-scoring-tool", "urban-heat-risk-intelligence-tool"],
+  },
+  {
+    slug: "ngos-development",
+    title: "NGOs and Development Organisations",
+    challenge: "Development actors need systems that respect field realities while improving evidence, accountability, and programme visibility.",
+    painPoints: ["Paper-heavy workflows", "Beneficiary duplication", "Slow MEL reports", "Limited field visibility"],
+    solutionTypes: ["Beneficiary systems", "Case tools", "MEL dashboards", "Survey and evidence workflows"],
+    workflow: "Design programme records, capture field data, validate entries, monitor indicators, and publish responsible reporting outputs.",
+    visual: "Programme lines connecting field records, indicators, and impact evidence.",
+    relatedProjects: ["social-development-data-management-system"],
+  },
+  {
+    slug: "agriculture-food",
+    title: "Agriculture and Food Systems",
+    challenge: "Agriculture programmes need better farmer records, geotagged data, market visibility, and extension-support workflows.",
+    painPoints: ["Low field-data quality", "Manual farmer aggregation", "Weak traceability", "Limited programme monitoring"],
+    solutionTypes: ["Farmer registries", "Geo-tagged forms", "Training systems", "Agriculture dashboards"],
+    workflow: "Capture farmer and activity data, validate it, map production or support patterns, and make decisions visible.",
+    visual: "Crop-row contours merging with data trails and location markers.",
+    relatedProjects: ["social-development-data-management-system"],
+  },
+  {
+    slug: "financial-services",
+    title: "Financial Services and InsurTech",
+    challenge: "Financial and insurance teams need credible digital products, data workflows, and customer-facing tools with strong operational logic.",
+    painPoints: ["Manual customer workflows", "Limited product prototyping", "Data silos", "Weak reporting interfaces"],
+    solutionTypes: ["FinTech prototypes", "Insurance workflows", "Portfolio dashboards", "Client portals"],
+    workflow: "Map product logic, define data requirements, build interfaces, and connect teams to decision-support views.",
+    visual: "Portfolio cells, scoring lines, and secure digital rails.",
+    relatedProjects: ["finz-fint-climate-finance-platform", "sbti-temperature-scoring-tool"],
+  },
+  {
+    slug: "smes-growing-businesses",
+    title: "SMEs and Growing Businesses",
+    challenge: "Growing businesses need practical systems that reduce manual work and make operations feel more professional.",
+    painPoints: ["Manual invoices", "Weak web presence", "Scattered customer records", "Slow admin workflows"],
+    solutionTypes: ["Websites", "Automation tools", "Document systems", "CRM-style workflows"],
+    workflow: "Clarify the business process, digitize repeatable work, build customer-facing touchpoints, and improve reporting.",
+    visual: "An operating dashboard of customers, documents, and simple automations.",
+    relatedProjects: ["shapbill", "clidafdig-enterprise-digital-presence"],
+  },
+  {
+    slug: "public-community",
+    title: "Public Institutions and Community Programmes",
+    challenge: "Institutions need digital services that are understandable, accountable, accessible, and maintainable.",
+    painPoints: ["Legacy processes", "Poor service experience", "Limited documentation", "Disconnected records"],
+    solutionTypes: ["Service portals", "Institutional MIS", "Workflow modernization", "Public-data dashboards"],
+    workflow: "Document the service journey, digitize the core workflow, support staff adoption, and create transparent reporting layers.",
+    visual: "Institutional service paths becoming a structured civic operating system.",
+    relatedProjects: ["social-development-data-management-system", "urban-heat-risk-intelligence-tool"],
+  },
 ] as const;
+
+export type SectorSolution = (typeof sectorSolutions)[number];
 
 export const processSteps = [
   {
-    title: "Discover",
-    text: "We clarify the problem, users, workflows, constraints, data realities, and business outcomes.",
+    title: "Understand",
+    text: "We study the users, context, data, constraints, decision points, and real operational pressure.",
+  },
+  {
+    title: "Define",
+    text: "We turn the discovery into a clear product scope, system logic, data model, and delivery path.",
   },
   {
     title: "Design",
-    text: "We translate the brief into information architecture, interface flows, technical direction, and delivery priorities.",
+    text: "We design interfaces, workflows, content, and interaction patterns that make the system understandable.",
   },
   {
     title: "Build",
-    text: "We develop the working system with responsive interfaces, clean code, and maintainable structure.",
+    text: "We develop clean, responsive, maintainable technology with room for iteration and handover.",
   },
   {
-    title: "Test",
-    text: "We review performance, responsiveness, content, accessibility, data states, and user journeys.",
-  },
-  {
-    title: "Launch",
-    text: "We prepare the product for production, deployment, analytics, SEO, documentation, and operational handover.",
+    title: "Validate",
+    text: "We test usability, data states, accessibility, performance, forms, and the production journey.",
   },
   {
     title: "Improve",
-    text: "We support iteration, reporting, automation, new modules, and continuous improvement after launch.",
+    text: "We support refinement, documentation, reporting, training, and new capabilities after launch.",
   },
 ] as const;
 
 export const values = [
-  "Innovation with purpose",
+  "Purpose before novelty",
+  "Clarity in complexity",
   "Excellence in execution",
-  "Practical problem-solving",
+  "Human-centred systems",
   "Trust and transparency",
-  "Human-centered technology",
+  "Continuous improvement",
   "Sustainable impact",
 ] as const;
 
-export const projects = [
+export const workFilters = [
+  "All",
+  "Digital Products",
+  "Data",
+  "Climate",
+  "Social Impact",
+  "Automation",
+  "Web Experiences",
+] as const;
+
+export type WorkFilter = (typeof workFilters)[number];
+
+export const workCases = [
   {
-    title: "Climate-Tech Platform Support",
-    category: "Climate-Tech / Data Systems",
+    slug: "finz-fint-climate-finance-platform",
+    title: "FINZ/FINT Climate Finance Platform",
+    category: "ClimateTech / FinTech / Data Systems",
+    filters: ["Climate", "Data", "Digital Products"],
+    capabilities: ["Portfolio workflows", "Climate intelligence", "Dashboard concepts"],
+    summary:
+      "A climate-finance platform direction for aligning financial decision-making with environmental intelligence and structured reporting.",
+    context:
+      "Financial and climate actors often need to combine technical climate data with portfolio-level workflows that non-specialist teams can navigate.",
+    challenge:
+      "The challenge is to make emissions, risk, and finance data usable without over-simplifying the complexity behind the analysis.",
+    approach:
+      "We shape the experience around portfolio intake, scoring logic, review states, and reporting outputs that can be explained and improved.",
+    delivered:
+      "Conceptual product architecture, dashboard patterns, reporting flows, and climate-finance interface direction.",
+    technology: ["Next.js concepts", "Data modelling", "Dashboard UX", "Climate workflow design"],
+    lessons:
+      "Climate-finance systems need strong data structure and careful explanation as much as visual polish.",
     image:
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Support for climate finance and emissions-alignment tools, including portfolio analysis, reporting workflows, and climate intelligence concepts.",
-    tags: ["Climate intelligence", "Emissions", "Reporting"],
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=82",
   },
   {
-    title: "NGO Beneficiary Management System",
-    category: "NGO / Social Impact",
+    slug: "sbti-temperature-scoring-tool",
+    title: "SBTi Temperature Scoring and Portfolio Analysis Tool",
+    category: "Climate Intelligence / Analytics",
+    filters: ["Climate", "Data"],
+    capabilities: ["Temperature scoring", "Portfolio analysis", "Analytics UI"],
+    summary:
+      "A decision-support concept for interpreting temperature alignment and portfolio climate signals.",
+    context:
+      "Climate teams need analytics surfaces that can communicate technical scoring logic to strategy, finance, and reporting stakeholders.",
+    challenge:
+      "Scoring tools can become opaque when methodology, assumptions, and portfolio segmentation are not made visible.",
+    approach:
+      "We organize scoring views around explainability, scenario comparison, and reporting-ready outputs.",
+    delivered:
+      "Analytics interface direction, scoring workflow structure, visual explanation patterns, and dashboard components.",
+    technology: ["Analytics UX", "Python-ready data concepts", "Reporting design", "Climate methodology translation"],
+    lessons:
+      "Decision intelligence improves when assumptions, source data, and visual summaries are designed together.",
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "A digital system concept for managing caregivers, beneficiaries, program records, and impact reporting.",
-    tags: ["Beneficiary data", "Program records", "Impact"],
+      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1600&q=82",
   },
   {
-    title: "Invoice and Receipt Generator",
-    category: "Business Automation",
+    slug: "social-development-data-management-system",
+    title: "Social Development Data Management System",
+    category: "Social Impact / MEL / Beneficiary Management",
+    filters: ["Social Impact", "Data", "Digital Products"],
+    capabilities: ["Beneficiary records", "MEL dashboards", "Field-data workflows"],
+    summary:
+      "A social-development system direction for managing programme records, beneficiaries, indicators, and reporting evidence.",
+    context:
+      "Social-impact teams often work across field locations, programme staff, beneficiaries, funders, and monitoring requirements.",
+    challenge:
+      "Programme data can become scattered, duplicated, or difficult to validate when field workflows are not designed into the system.",
+    approach:
+      "We map records, roles, programme indicators, intake forms, and reporting views around the realities of field teams.",
+    delivered:
+      "Beneficiary-management structure, MEL dashboard concepts, case records, data collection workflows, and reporting patterns.",
+    technology: ["MIS design", "Forms", "Data validation", "MEL dashboards", "Role-based workflows"],
+    lessons:
+      "Impact systems must respect human context, data protection, and reporting pressure at the same time.",
     image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "A lightweight business tool designed to help entrepreneurs and small businesses generate invoices and receipts more efficiently.",
-    tags: ["Automation", "SME tools", "Documents"],
+      "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=1600&q=82",
   },
   {
-    title: "Data Dashboards and Reports",
-    category: "Analytics",
+    slug: "shapbill",
+    title: "ShapBill",
+    category: "Business Productivity / Mobile Product",
+    filters: ["Digital Products", "Automation"],
+    capabilities: ["Invoice workflows", "Mobile product UX", "Document generation"],
+    summary:
+      "A lightweight productivity product direction for entrepreneurs and small businesses managing invoices, receipts, and customer records.",
+    context:
+      "Many small businesses need simple tools that remove admin friction without forcing them into enterprise software complexity.",
+    challenge:
+      "The tool needs to be fast, understandable, mobile-friendly, and credible enough for real customer-facing documents.",
+    approach:
+      "We structure the product around repeatable document flows, customer details, item records, and clean export-ready outputs.",
+    delivered:
+      "Product concept, workflow map, interface direction, and document-generation logic.",
+    technology: ["Mobile-first UI", "Document generation", "Local business workflows", "Automation"],
+    lessons:
+      "SME tools work best when they focus on one painful workflow and make it feel effortless.",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Decision-support dashboards and reporting templates for organizations that need clearer insight from their data.",
-    tags: ["Dashboards", "KPI reporting", "Data clarity"],
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=82",
   },
   {
-    title: "Corporate Website Development",
-    category: "Web Development",
+    slug: "urban-heat-risk-intelligence-tool",
+    title: "Urban Heat Risk Intelligence Tool",
+    category: "Climate Risk / Geospatial Analytics",
+    filters: ["Climate", "Data"],
+    capabilities: ["Heat-risk mapping", "Spatial analytics", "Public-sector dashboards"],
+    summary:
+      "A geospatial intelligence concept for understanding urban heat exposure, vulnerability, and environmental risk patterns.",
+    context:
+      "Urban heat risk affects communities, infrastructure, health, agriculture, and planning decisions across rapidly growing cities.",
+    challenge:
+      "Risk data needs to be interpreted through location, vulnerability, and decision context rather than shown as a static map.",
+    approach:
+      "We combine map-based exploration, risk layers, community indicators, and reporting narratives into a usable intelligence surface.",
+    delivered:
+      "Geospatial product direction, dashboard components, risk-layer structure, and public-institution reporting concepts.",
+    technology: ["GIS UX", "Risk visualization", "Spatial dashboards", "Climate analytics"],
+    lessons:
+      "A good map is not just a picture; it is an interface for asking better questions.",
     image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Modern websites and digital presence solutions for brands, SMEs, consultants, and professional organizations.",
-    tags: ["Web design", "SEO", "Brand systems"],
+      "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1600&q=82",
+  },
+  {
+    slug: "clidafdig-enterprise-digital-presence",
+    title: "CLIDAFIG Enterprise Digital Presence",
+    category: "Web Experience / Business Technology",
+    filters: ["Web Experiences", "Digital Products"],
+    capabilities: ["Corporate web presence", "Content architecture", "Business credibility"],
+    summary:
+      "A web-experience direction for presenting a business with clarity, credibility, and a stronger digital operating base.",
+    context:
+      "Growing businesses need websites that explain what they do, create trust, and support real enquiries.",
+    challenge:
+      "A business presence can feel generic when the messaging, hierarchy, visuals, and contact paths are not designed together.",
+    approach:
+      "We shape the page structure, visual tone, service messaging, and enquiry paths around the organization’s actual offer.",
+    delivered:
+      "Website direction, content hierarchy, responsive interface patterns, and conversion-focused contact flow.",
+    technology: ["Next.js", "Responsive UI", "SEO structure", "Content strategy"],
+    lessons:
+      "A credible digital presence should reduce confusion before it asks for conversion.",
+    image:
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=82",
   },
 ] as const;
 
-export const solutionAreas = [
-  {
-    title: "Business & SME Technology",
-    icon: "Building2" satisfies IconName,
-    description:
-      "Digital systems that help small and growing organizations present themselves professionally, manage operations, and make better decisions.",
-    problems: ["Manual records", "Weak digital presence", "Unclear reporting", "Slow customer workflows"],
-    helps: "We design practical web platforms, internal tools, dashboards, document systems, and automation workflows.",
-    examples: ["Corporate websites", "Invoice systems", "Simple CRMs", "Booking and contact portals"],
-  },
-  {
-    title: "Climate and Environmental Technology",
-    icon: "Globe2" satisfies IconName,
-    description:
-      "Technology support for climate, carbon, environmental monitoring, GIS, emissions analysis, and sustainability reporting concepts.",
-    problems: ["Fragmented climate data", "Hard-to-read reports", "Weak geospatial visibility", "Limited MRV structure"],
-    helps: "We shape dashboards, data models, map-enabled experiences, and reporting tools that make climate work more usable.",
-    examples: ["Climate dashboards", "GIS platforms", "Emissions tools", "Risk visualization"],
-  },
-  {
-    title: "Agriculture and Food Systems",
-    icon: "Wheat" satisfies IconName,
-    description:
-      "Digital tools for farmer programs, food systems, agribusiness records, extension support, monitoring, and supply-chain visibility.",
-    problems: ["Low field data quality", "Limited farmer visibility", "Manual aggregation", "Weak program reporting"],
-    helps: "We support structured data capture, dashboards, beneficiary records, mobile-friendly forms, and analytics workflows.",
-    examples: ["Farmer registries", "Program dashboards", "Geo-tagged records", "Training support systems"],
-  },
-  {
-    title: "Social Impact and NGO Technology",
-    icon: "HeartHandshake" satisfies IconName,
-    description:
-      "Systems for organizations that need cleaner beneficiary management, reporting, M&E visibility, and community program operations.",
-    problems: ["Scattered beneficiary records", "Slow impact reporting", "Poor data confidence", "Difficult field coordination"],
-    helps: "We create human-centered tools that organize programs, cases, activities, indicators, and reporting evidence.",
-    examples: ["Beneficiary systems", "M&E dashboards", "Case tools", "Digital intake forms"],
-  },
-  {
-    title: "Humanitarian and Development Systems",
-    icon: "ShieldCheck" satisfies IconName,
-    description:
-      "Resilient information systems for organizations working across humanitarian, development, and institution-facing programs.",
-    problems: ["Urgent reporting needs", "Limited visibility", "Multi-location coordination", "Data protection concerns"],
-    helps: "We help teams design structured, secure, and field-aware systems for program records and decision support.",
-    examples: ["Program MIS", "Response dashboards", "Training portals", "Evidence registers"],
-  },
-  {
-    title: "Government and Institutional Digital Transformation",
-    icon: "Landmark" satisfies IconName,
-    description:
-      "Advisory and implementation support for institutions that need reliable, documented, and user-centered digital services.",
-    problems: ["Legacy processes", "Complex approvals", "Poor user experience", "Disconnected data"],
-    helps: "We support discovery, interface design, workflow mapping, documentation, and platform implementation.",
-    examples: ["Service portals", "Data collection systems", "Admin dashboards", "Workflow modernization"],
-  },
-  {
-    title: "Data, AI and Automation",
-    icon: "BrainCircuit" satisfies IconName,
-    description:
-      "Structured data and intelligent workflow support for organizations that want to reduce repetition and act on better insight.",
-    problems: ["Repetitive tasks", "Messy spreadsheets", "Weak analytics", "Slow reporting cycles"],
-    helps: "We build clean data structures, dashboard logic, automation flows, and AI-assisted tools where they fit the workflow.",
-    examples: ["KPI dashboards", "Data cleaning", "AI-assisted tools", "Automated reports"],
-  },
-  {
-    title: "Digital Infrastructure and Advisory",
-    icon: "ServerCog" satisfies IconName,
-    description:
-      "Technical planning and infrastructure support for organizations that need systems that are maintainable, documented, and ready to grow.",
-    problems: ["Unclear architecture", "Undocumented systems", "Scaling concerns", "Poor operational handover"],
-    helps: "We help define cloud-ready architecture, workflows, documentation, deployment plans, and support structures.",
-    examples: ["System blueprints", "Cloud planning", "Technical documentation", "Platform advisory"],
-  },
-] as const;
+export type WorkCase = (typeof workCases)[number];
 
 export const insightCategories = [
   "All",
-  "AI",
-  "Startups",
-  "Climate-Tech",
-  "FinTech",
-  "Cybersecurity",
-  "Software",
-  "Digital Transformation",
+  "Social Impact",
+  "Data",
+  "Climate Intelligence",
+  "AI Automation",
+  "Digital Systems",
 ] as const;
 
 export type InsightCategory = (typeof insightCategories)[number];
 
-export const fallbackArticles = [
+export const insights = [
   {
-    title: "How intelligent digital infrastructure is reshaping African business operations",
-    source: "NelviusGrey Insights",
-    publishedAt: "2026-07-02T00:00:00.000Z",
+    slug: "designing-technology-for-social-impact",
+    title: "Designing technology for social impact without losing the human context",
     description:
-      "A practical look at the systems, dashboards, workflows, and automation patterns helping organizations operate with more clarity.",
-    url: siteConfig.url,
-    imageUrl:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-    category: "Digital Transformation",
-    isPlaceholder: true,
+      "Impact systems work when they are designed around programme realities, field teams, data protection, and evidence that can be trusted.",
+    author: "NelviusGrey Tech",
+    date: "2026-07-10",
+    category: "Social Impact",
+    readingTime: "5 min read",
+    cover:
+      "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=1600&q=82",
+    body: [
+      "Social-impact technology is not just software for nonprofit teams. It is an operating layer that connects people, evidence, decisions, and accountability.",
+      "A useful system begins by understanding the programme: who collects data, who reviews it, what decisions depend on it, and what risks appear when sensitive records are handled poorly.",
+      "The best tools are often quiet. They reduce duplication, improve confidence, protect context, and help teams tell the truth about what is happening in the field.",
+    ],
   },
   {
-    title: "Why climate-tech products need better data design, not just better dashboards",
-    source: "NelviusGrey Insights",
-    publishedAt: "2026-07-01T00:00:00.000Z",
+    slug: "making-organisational-data-useful",
+    title: "Making organisational data useful before building the dashboard",
     description:
-      "Climate systems become more useful when data structures, field realities, and reporting needs are designed together.",
-    url: siteConfig.url,
-    imageUrl:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    category: "Climate-Tech",
-    isPlaceholder: true,
+      "Dashboards become valuable when data structure, ownership, definitions, and reporting habits are designed before the visual layer.",
+    author: "NelviusGrey Tech",
+    date: "2026-07-08",
+    category: "Data",
+    readingTime: "4 min read",
+    cover:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=82",
+    body: [
+      "Many teams ask for dashboards when the real need is a better decision system. The visual chart is only the final expression of a deeper data workflow.",
+      "Useful data work starts with definitions: what the metric means, where it comes from, who owns it, how often it changes, and which decision it supports.",
+      "When these foundations are clear, dashboards become living instruments rather than decorative reports.",
+    ],
   },
   {
-    title: "The next wave of SME automation will be simple, focused, and workflow-first",
-    source: "NelviusGrey Insights",
-    publishedAt: "2026-06-28T00:00:00.000Z",
+    slug: "climate-intelligence-for-african-institutions",
+    title: "Climate intelligence for African institutions needs context, not just maps",
     description:
-      "Small teams need tools that remove friction from invoices, records, customer workflows, reports, and recurring decisions.",
-    url: siteConfig.url,
-    imageUrl:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
-    category: "Software",
-    isPlaceholder: true,
+      "Climate platforms must connect environmental signals to finance, agriculture, health, infrastructure, and community-level realities.",
+    author: "NelviusGrey Tech",
+    date: "2026-07-05",
+    category: "Climate Intelligence",
+    readingTime: "6 min read",
+    cover:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=82",
+    body: [
+      "Climate intelligence becomes powerful when it is tied to the decisions institutions actually need to make.",
+      "A map can show risk, but a system must help teams understand priority, exposure, uncertainty, and response options.",
+      "For African contexts, climate tools need to account for local data gaps, institutional capacity, community realities, and the cost of bad assumptions.",
+    ],
+  },
+  {
+    slug: "practical-ai-automation-for-smes",
+    title: "Practical AI automation for SMEs should begin with boring work",
+    description:
+      "The strongest automation opportunities are often repetitive workflows that drain time but do not require speculative AI complexity.",
+    author: "NelviusGrey Tech",
+    date: "2026-07-02",
+    category: "AI Automation",
+    readingTime: "4 min read",
+    cover:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=82",
+    body: [
+      "AI should not be added because it sounds impressive. It should be introduced where it can reduce friction, improve consistency, or help people make better use of information.",
+      "For SMEs, this often means document preparation, report summaries, internal search, customer response drafts, and clean workflow handoffs.",
+      "The goal is not to replace judgement. The goal is to remove unnecessary drag from everyday operations.",
+    ],
+  },
+  {
+    slug: "systems-that-survive-beyond-launch",
+    title: "Building digital systems that survive beyond launch",
+    description:
+      "A launch is not the finish line. Durable systems need documentation, ownership, training, measurement, and continuous improvement.",
+    author: "NelviusGrey Tech",
+    date: "2026-06-30",
+    category: "Digital Systems",
+    readingTime: "5 min read",
+    cover:
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=82",
+    body: [
+      "A system that looks impressive on launch day can still fail if it is difficult to maintain, explain, or improve.",
+      "Durability comes from decisions that are often invisible: clear architecture, documented workflows, sensible content models, accessible interfaces, and handover practices.",
+      "The best digital systems are built not only for users, but also for the people who must keep them alive.",
+    ],
   },
 ] as const;
 
-export const serviceImages = {
-  web: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-  systems: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80",
-  data: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-  climate: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+export type Insight = (typeof insights)[number];
+
+export const legalContent = {
+  privacy: {
+    title: "Privacy Policy",
+    updated: "July 10, 2026",
+    sections: [
+      {
+        title: "Purpose",
+        body: "NelviusGrey Tech collects only the information needed to respond to enquiries, discuss projects, deliver agreed services, and improve our website responsibly.",
+      },
+      {
+        title: "Information we may collect",
+        body: "Contact forms may collect your name, work email, phone or WhatsApp number, organisation, project needs, budget range, timeline, and message. We do not request sensitive personal information through the website.",
+      },
+      {
+        title: "How information is used",
+        body: "Information is used to reply to enquiries, prepare project conversations, provide requested services, and maintain basic operational records. We do not sell personal information.",
+      },
+      {
+        title: "Third-party services",
+        body: "The website may use hosting, email delivery, analytics, map, and external document services. These providers process information according to their own privacy and security practices.",
+      },
+      {
+        title: "Your choices",
+        body: "You can contact NelviusGrey Tech to request correction or deletion of information you have provided, subject to legitimate business, legal, or operational requirements.",
+      },
+    ],
+  },
+  terms: {
+    title: "Terms and Conditions",
+    updated: "July 10, 2026",
+    sections: [
+      {
+        title: "Website use",
+        body: "This website is provided to share information about NelviusGrey Tech, its services, selected work directions, insights, and contact options.",
+      },
+      {
+        title: "No unsupported claims",
+        body: "Project descriptions may include selected work, solution concepts, and approved public-facing descriptions. They should not be interpreted as guarantees of outcomes, revenue, user numbers, or certifications.",
+      },
+      {
+        title: "Project engagements",
+        body: "Any paid work, consulting, or development engagement requires a separate agreement, scope, timeline, deliverables, and payment terms.",
+      },
+      {
+        title: "External links",
+        body: "The website may link to third-party platforms such as LinkedIn, Facebook, WhatsApp, Google Drive, maps, and publishers. NelviusGrey Tech is not responsible for external website content or policies.",
+      },
+      {
+        title: "Intellectual property",
+        body: "Website content, brand assets, structure, and visual design belong to NelviusGrey Tech unless otherwise stated. Do not copy or reuse without permission.",
+      },
+    ],
+  },
 } as const;
+
+export function getWorkCase(slug: string) {
+  return workCases.find((item) => item.slug === slug);
+}
+
+export function getInsight(slug: string) {
+  return insights.find((item) => item.slug === slug);
+}

@@ -1,4 +1,4 @@
-import { fallbackArticles, type InsightCategory } from "@/lib/constants";
+import { insights, type InsightCategory } from "@/lib/constants";
 
 export type TechArticle = {
   title: string;
@@ -13,13 +13,11 @@ export type TechArticle = {
 
 const queryByCategory: Record<InsightCategory, string> = {
   All: "technology OR AI OR startups OR software OR climate-tech OR fintech OR cybersecurity OR digital transformation",
-  AI: "artificial intelligence OR machine learning",
-  Startups: "technology startups OR venture technology",
-  "Climate-Tech": "climate tech OR sustainability technology OR carbon data",
-  FinTech: "fintech OR digital banking OR payments technology",
-  Cybersecurity: "cybersecurity OR data security OR cyber risk",
-  Software: "software development OR developer tools OR SaaS",
-  "Digital Transformation": "digital transformation OR business automation OR enterprise technology",
+  "Social Impact": "social impact technology OR nonprofit technology OR humanitarian data systems",
+  Data: "data systems OR dashboards OR decision intelligence",
+  "Climate Intelligence": "climate tech OR sustainability technology OR carbon data OR climate risk",
+  "AI Automation": "artificial intelligence automation OR business automation",
+  "Digital Systems": "digital transformation OR software platforms OR enterprise technology",
 };
 
 type NewsApiArticle = {
@@ -32,18 +30,23 @@ type NewsApiArticle = {
 };
 
 type NewsApiResponse = {
-  status?: string;
   articles?: NewsApiArticle[];
-  message?: string;
 };
 
 export function fallbackForCategory(category: InsightCategory): TechArticle[] {
-  if (category === "All") {
-    return [...fallbackArticles];
-  }
+  const filtered =
+    category === "All" ? insights : insights.filter((article) => article.category === category);
 
-  const filtered = fallbackArticles.filter((article) => article.category === category);
-  return filtered.length > 0 ? [...filtered] : [...fallbackArticles];
+  return (filtered.length > 0 ? filtered : insights).slice(0, 6).map((article) => ({
+    title: article.title,
+    source: article.author,
+    publishedAt: article.date,
+    description: article.description,
+    url: `/insights/${article.slug}`,
+    imageUrl: article.cover,
+    category: article.category,
+    isPlaceholder: true,
+  }));
 }
 
 export async function fetchTechArticles(category: InsightCategory): Promise<{
@@ -57,7 +60,7 @@ export async function fetchTechArticles(category: InsightCategory): Promise<{
     return {
       source: "fallback",
       articles: fallbackForCategory(category),
-      message: "Insights Coming Soon",
+      message: "Internal insights shown. Add NEWS_API_KEY for curated external headlines.",
     };
   }
 
@@ -66,22 +69,18 @@ export async function fetchTechArticles(category: InsightCategory): Promise<{
   url.searchParams.set("q", query);
   url.searchParams.set("language", "en");
   url.searchParams.set("sortBy", "publishedAt");
-  url.searchParams.set("pageSize", "12");
+  url.searchParams.set("pageSize", "8");
 
   const response = await fetch(url, {
-    headers: {
-      "X-Api-Key": apiKey,
-    },
-    next: {
-      revalidate: 1800,
-    },
+    headers: { "X-Api-Key": apiKey },
+    next: { revalidate: 1800 },
   });
 
   if (!response.ok) {
     return {
       source: "fallback",
       articles: fallbackForCategory(category),
-      message: "News service unavailable. Showing curated placeholders.",
+      message: "External news unavailable. Showing internal insights.",
     };
   }
 
@@ -89,32 +88,25 @@ export async function fetchTechArticles(category: InsightCategory): Promise<{
   const articles =
     payload.articles
       ?.filter((article) => article.title && article.url)
-      .map((article): TechArticle => {
-        return {
-          title: article.title ?? "Untitled article",
-          source: article.source?.name ?? "Technology News",
-          publishedAt: article.publishedAt ?? new Date().toISOString(),
-          description:
-            article.description ??
-            "A current technology article selected for business and innovation readers.",
-          url: article.url ?? "#",
-          imageUrl:
-            article.urlToImage ??
-            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-          category,
-        };
-      }) ?? [];
+      .map((article): TechArticle => ({
+        title: article.title ?? "Untitled article",
+        source: article.source?.name ?? "Technology News",
+        publishedAt: article.publishedAt ?? new Date().toISOString(),
+        description:
+          article.description ??
+          "A current technology article selected for business and innovation readers.",
+        url: article.url ?? "#",
+        imageUrl: article.urlToImage ?? insights[0].cover,
+        category,
+      })) ?? [];
 
   if (articles.length === 0) {
     return {
       source: "fallback",
       articles: fallbackForCategory(category),
-      message: "Insights Coming Soon",
+      message: "Internal insights shown.",
     };
   }
 
-  return {
-    source: "newsapi",
-    articles,
-  };
+  return { source: "newsapi", articles };
 }

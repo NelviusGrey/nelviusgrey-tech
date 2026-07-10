@@ -1,39 +1,54 @@
 import type { Metadata } from "next";
 
-import { SolutionCard } from "@/components/cards/solution-card";
+import { FinalCta } from "@/components/sections/final-cta";
+import { SectorSwitcher } from "@/components/sections/sector-switcher";
 import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { solutionAreas } from "@/lib/constants";
+import { sectorSolutions } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Thematic technology solution areas for business, climate, agriculture, social impact, humanitarian, government, data, AI, and digital infrastructure needs.",
+    "Industry and operational solution areas for climate, NGOs, agriculture, financial services, SMEs and public institutions.",
 };
 
 export default function SolutionsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Solutions and thematic areas"
-        title="Technology shaped around the sectors where better systems create real value."
-        description="NelviusGrey Tech serves organizations working across business growth, social impact, climate resilience, agriculture, humanitarian programs, institutional transformation, data, AI, and digital infrastructure."
+        eyebrow="Solutions"
+        title="Sector-aware technology for the operational challenges behind the interface."
+        description="Solutions are organised by industry and operational problem, not by generic service labels. The goal is to shape systems around context."
       />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[88rem]">
+          <SectorSwitcher />
+        </div>
+      </section>
+
+      <section className="px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem]">
           <SectionHeading
-            eyebrow="Where we work"
-            title="From SME workflows to development-sector systems."
-            description="Each thematic area includes common problems, how NelviusGrey Tech helps, and example solutions that can be adapted to the organization."
+            eyebrow="Solution map"
+            title="Every sector has a different path from data to decisions."
           />
-          <div className="mt-12 grid gap-5">
-            {solutionAreas.map((solution, index) => (
-              <SolutionCard key={solution.title} solution={solution} index={index} />
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {sectorSolutions.map((sector) => (
+              <article key={sector.slug} className="border border-white/10 bg-white/[0.025] p-6">
+                <h2 className="font-display text-3xl font-light tracking-[-0.06em] text-white">{sector.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-white/62">{sector.challenge}</p>
+                <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-[color:var(--brand-green)]">
+                  Example workflow
+                </p>
+                <p className="mt-3 text-sm leading-7 text-white/56">{sector.workflow}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
+
+      <FinalCta />
     </>
   );
 }

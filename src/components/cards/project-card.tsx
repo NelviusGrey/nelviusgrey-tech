@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Reveal } from "@/components/animations/reveal";
-import type { projects } from "@/lib/constants";
+import type { workCases } from "@/lib/constants";
 
-type Project = (typeof projects)[number];
+type Project = (typeof workCases)[number];
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
@@ -27,9 +28,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       </div>
       <div className="p-6">
         <h3 className="text-xl font-semibold tracking-tight text-white">{project.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-white/62">{project.description}</p>
+        <p className="mt-3 text-sm leading-7 text-white/62">{project.summary}</p>
         <div className="mt-5 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
+          {project.capabilities.map((tag) => (
             <span
               key={tag}
               className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-white/56"
@@ -38,6 +39,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             </span>
           ))}
         </div>
+        <Link
+          href={`/work/${project.slug}`}
+          className="mt-6 inline-flex text-sm font-semibold text-[color:var(--brand-green)] transition hover:text-white"
+        >
+          Read case study
+        </Link>
       </div>
     </Reveal>
   );
