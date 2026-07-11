@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { NewsExperience } from "@/components/news/news-experience";
 import { PageHeader } from "@/components/ui/page-header";
 import { insightCategories, insights } from "@/lib/constants";
 
@@ -22,7 +23,10 @@ export default function InsightsPage() {
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[88rem]">
-          <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--brand-green)]">
+            NelviusGrey notes
+          </p>
+          <div className="no-scrollbar -mx-4 mt-6 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
             {insightCategories.map((category) => (
               <span key={category} className="shrink-0 rounded-md border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/58">
                 {category}
@@ -45,7 +49,7 @@ export default function InsightsPage() {
                 <p className="mt-5 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--brand-green)]">
                   {article.category} / {article.readingTime}
                 </p>
-                <h2 className="mt-4 font-display text-3xl font-light tracking-[-0.06em] text-white">
+                <h2 className="mt-4 font-display text-3xl font-light tracking-normal text-white">
                   {article.title}
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-white/58">{article.description}</p>
@@ -54,6 +58,8 @@ export default function InsightsPage() {
           </div>
         </div>
       </section>
+
+      <NewsExperience />
     </>
   );
 }

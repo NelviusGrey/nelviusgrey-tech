@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 
 import { siteConfig } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,7 @@ export function BrandMark({
         />
       </span>
       {!compact && (
-        <span className="font-display leading-[0.98] tracking-[-0.04em] text-white">
+        <span className="font-display leading-[0.98] tracking-normal text-white">
           <span className="block text-[1.35rem] font-light sm:text-[1.65rem]">NelviusGrey</span>
           <span className="block text-[1.35rem] font-light sm:text-[1.65rem]">Tech</span>
         </span>

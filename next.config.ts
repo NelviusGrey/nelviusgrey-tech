@@ -1,10 +1,16 @@
 import type { NextConfig } from "next";
 
+const isSitesExport = process.env.SITES_EXPORT === "1";
+
 const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
+  ...(isSitesExport
+    ? {
+        output: "export" as const,
+        trailingSlash: true,
+      }
+    : {}),
   images: {
-    unoptimized: true,
+    unoptimized: isSitesExport,
     remotePatterns: [
       {
         protocol: "https",

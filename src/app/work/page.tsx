@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { FinalCta } from "@/components/sections/final-cta";
-import { WorkFilter } from "@/components/sections/work-filter";
+import { ProjectExhibition } from "@/components/sections/project-exhibition";
 import { PageHeader } from "@/components/ui/page-header";
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function WorkPage() {
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[88rem]">
-          <WorkFilter />
+          <ProjectExhibition />
         </div>
       </section>
 

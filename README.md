@@ -1,6 +1,6 @@
 # NelviusGrey Tech Website
 
-Premium multi-page corporate website for NelviusGrey Tech, built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and Lucide React.
+Premium multi-page corporate website for NelviusGrey Tech, built with Next.js App Router, TypeScript, Tailwind CSS, Motion for React, Lenis, React Three Fiber, Drei, React Hook Form, Zod, RSS aggregation, and Lucide React.
 
 ## Routes
 
@@ -8,10 +8,13 @@ Premium multi-page corporate website for NelviusGrey Tech, built with Next.js Ap
 - `/about` - Brand story, founder, mission, vision, values
 - `/services` - Detailed service lines and deliverables
 - `/solutions` - Thematic sectors and solution examples
-- `/projects` - Selected work and solution concepts
-- `/blog` - Technology insights with server-side news API fallback
+- `/work` - Premium project exhibition and case-study routes
+- `/projects` - Redirects to `/work`
+- `/insights` - NelviusGrey notes plus African technology news radar
+- `/blog` - Redirects to `/insights`
 - `/contact` - Contact form, details, LinkedIn, WhatsApp, and map
-- `/api/tech-news` - Server route for technology article data
+- `/api/news` - Server-side RSS/GDELT technology news aggregation
+- `/api/contact` - Server-side project enquiry validation and webhook/mailto fallback
 
 ## Local Development
 
@@ -26,20 +29,41 @@ Open `http://localhost:3000`.
 
 ```bash
 npm run lint
+npx tsc --noEmit
 npm run build
 ```
 
-The project is ready for Vercel deployment. Vercel will auto-detect Next.js.
+The default build is Vercel-ready and preserves Next.js Route Handlers for `/api/news` and `/api/contact`.
+
+For the existing ChatGPT Sites project, use the static packaging path:
+
+```bash
+npm run build:sites
+```
+
+That package is designed for Sites publishing and gracefully falls back when server routes are unavailable.
 
 ## Environment Variables
 
-Copy `.env.example` to `.env.local` and add a NewsAPI key when live article fetching is needed:
+Copy `.env.example` to `.env.local` when local runtime configuration is needed:
 
 ```bash
-NEWS_API_KEY=
+CONTACT_WEBHOOK_URL=
+ENABLE_GDELT_NEWS=true
 ```
 
-If no key is configured, `/api/tech-news` returns curated placeholder cards marked as "Insights Coming Soon".
+- `CONTACT_WEBHOOK_URL` is optional. When absent, the contact route validates the enquiry and returns a prepared email fallback.
+- `ENABLE_GDELT_NEWS` is optional. RSS feeds remain the primary news source; GDELT is only a configurable discovery fallback.
+
+## Vercel And GitHub
+
+Vercel will auto-detect this as a Next.js App Router project. Connect the GitHub repository to Vercel, set the production branch to `main`, and Vercel will create production deployments from `main` and preview deployments for pull requests.
+
+If using GitHub Actions instead of Vercel Git integration, configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as repository secrets, then run `vercel pull`, `vercel build`, and `vercel deploy --prebuilt`.
+
+## News Sources
+
+The news radar uses publisher-provided RSS metadata from TechCabal, Techpoint Africa, Disrupt Africa, and IT News Africa. It stores no full articles and sends readers to the original publisher.
 
 ## Brand Assets
 

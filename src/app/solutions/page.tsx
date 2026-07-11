@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 import { FinalCta } from "@/components/sections/final-cta";
 import { SectorSwitcher } from "@/components/sections/sector-switcher";
@@ -36,7 +36,7 @@ export default function SolutionsPage() {
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {sectorSolutions.map((sector) => (
               <article key={sector.slug} className="border border-white/10 bg-white/[0.025] p-6">
-                <h2 className="font-display text-3xl font-light tracking-[-0.06em] text-white">{sector.title}</h2>
+                <h2 className="font-display text-3xl font-light tracking-normal text-white">{sector.title}</h2>
                 <p className="mt-4 text-sm leading-7 text-white/62">{sector.challenge}</p>
                 <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-[color:var(--brand-green)]">
                   Example workflow

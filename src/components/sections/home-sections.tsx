@@ -4,13 +4,13 @@ import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
 import { CapabilityMarquee } from "@/components/sections/capability-marquee";
 import { FinalCta } from "@/components/sections/final-cta";
+import { InteractiveServices } from "@/components/sections/interactive-services";
+import { ProjectExhibition } from "@/components/sections/project-exhibition";
 import { SectorSwitcher } from "@/components/sections/sector-switcher";
-import { WorkFilter } from "@/components/sections/work-filter";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
   insights,
   processSteps,
-  serviceCapabilities,
   siteConfig,
 } from "@/lib/constants";
 
@@ -23,7 +23,7 @@ export function HomeSections() {
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--brand-green)]">
               Engineering / Data / Design
             </p>
-            <h2 className="mt-8 max-w-6xl font-display text-5xl font-light leading-[0.98] tracking-[-0.07em] text-white sm:text-7xl lg:text-8xl">
+            <h2 className="mt-8 max-w-6xl font-display text-5xl font-light leading-[0.98] tracking-normal text-white sm:text-7xl lg:text-8xl">
               We combine engineering, data and design to turn complex problems into systems people can actually use.
             </h2>
           </Reveal>
@@ -40,7 +40,7 @@ export function HomeSections() {
             description="Where approved screenshots are unavailable, visuals are presented as conceptual or demo representations. The work descriptions stay honest and avoid invented outcomes."
           />
           <div className="mt-12">
-            <WorkFilter />
+            <ProjectExhibition compact />
           </div>
         </div>
       </section>
@@ -52,31 +52,8 @@ export function HomeSections() {
             title="Six ways we turn real operational pressure into intelligent digital systems."
             description="Each capability connects product thinking, data structure, interface design and practical implementation."
           />
-          <div className="mt-12 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-2 xl:grid-cols-3">
-            {serviceCapabilities.map((service, index) => (
-              <Reveal key={service.slug} delay={index * 0.035} className="bg-[#060806] p-6 sm:p-8">
-                <p className="font-mono text-xs text-[color:var(--brand-green)]">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-8 font-display text-3xl font-light tracking-[-0.06em] text-white">
-                  {service.title}
-                </h3>
-                <p className="mt-5 text-sm leading-7 text-white/62">{service.summary}</p>
-                <div className="mt-7 grid gap-2">
-                  {service.deliverables.slice(0, 4).map((item) => (
-                    <p key={item} className="border-t border-white/10 pt-2 text-sm text-white/46">
-                      {item}
-                    </p>
-                  ))}
-                </div>
-                <Link prefetch={false}
-                  href={`/services#${service.slug}`}
-                  className="mt-7 inline-flex text-sm font-semibold text-[color:var(--brand-green)]"
-                >
-                  Explore capability
-                </Link>
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <InteractiveServices compact />
           </div>
         </div>
       </section>
@@ -137,7 +114,7 @@ export function HomeSections() {
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--brand-green)]">
               Founder preview
             </p>
-            <h2 className="mt-6 font-display text-5xl font-light tracking-[-0.07em] text-white sm:text-7xl">
+            <h2 className="mt-6 font-display text-5xl font-light tracking-normal text-white sm:text-7xl">
               Ighere G. Nelson
             </h2>
             <p className="mt-3 text-white/54">{siteConfig.founder.title}</p>
@@ -177,7 +154,7 @@ export function HomeSections() {
                   <p className="mt-5 font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--brand-green)]">
                     {article.category} / {article.readingTime}
                   </p>
-                  <h3 className="mt-4 font-display text-2xl font-light tracking-[-0.05em] text-white">
+                  <h3 className="mt-4 font-display text-2xl font-light tracking-normal text-white">
                     {article.title}
                   </h3>
                 </Link>

@@ -61,13 +61,13 @@ export default function ContactPage() {
       />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="grid gap-3">
+        <div className="mx-auto grid w-full max-w-[88rem] gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="grid min-w-0 gap-3">
             {contactOptions.map((option, index) => {
               const Icon = option.icon;
 
               return (
-                <Reveal key={option.label} delay={index * 0.035} className="border border-white/10 bg-white/[0.025] p-5">
+                <Reveal key={option.label} delay={index * 0.035} className="min-w-0 border border-white/10 bg-white/[0.025] p-5">
                   <a
                     href={option.href}
                     target={option.href.startsWith("http") ? "_blank" : undefined}
@@ -77,20 +77,20 @@ export default function ContactPage() {
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-[color:var(--brand-green)]/25 bg-[color:var(--brand-green-soft)] text-[color:var(--brand-green)]">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <span>
+                    <span className="min-w-0">
                       <span className="block text-sm font-semibold text-white">{option.label}</span>
-                      <span className="mt-1 block text-sm leading-7 text-white/60">{option.value}</span>
+                      <span className="mt-1 block break-words text-sm leading-7 text-white/60">{option.value}</span>
                     </span>
                   </a>
                 </Reveal>
               );
             })}
-            <Reveal delay={0.25} className="border border-white/10 bg-white/[0.025] p-5">
+            <Reveal delay={0.25} className="min-w-0 border border-white/10 bg-white/[0.025] p-5">
               <a href={siteConfig.links.privacyPolicy} target="_blank" rel="noreferrer" className="flex gap-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-[color:var(--brand-green)]/25 bg-[color:var(--brand-green-soft)] text-[color:var(--brand-green)]">
                   <Download className="h-5 w-5" />
                 </span>
-                <span>
+                <span className="min-w-0">
                   <span className="block text-sm font-semibold text-white">Download Privacy Policy</span>
                   <span className="mt-1 block text-sm leading-7 text-white/60">
                     Opens the existing Google Drive policy document.
@@ -100,7 +100,7 @@ export default function ContactPage() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.08}>
+          <Reveal delay={0.08} className="min-w-0">
             <ContactForm />
           </Reveal>
         </div>

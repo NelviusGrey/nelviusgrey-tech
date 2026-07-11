@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { BrandMark } from "@/components/ui/brand-mark";
 
@@ -12,7 +12,7 @@ export default function NotFound() {
         <p className="font-mono text-sm uppercase tracking-[0.3em] text-[color:var(--brand-green)]">
           404 / Lost Signal
         </p>
-        <h1 className="mt-5 font-display text-5xl font-light tracking-[-0.06em] text-white sm:text-7xl">
+        <h1 className="mt-5 font-display text-5xl font-light tracking-normal text-white sm:text-7xl">
           This system path does not exist.
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-white/62">

@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { PageProgress } from "@/components/layout/page-progress";
 import { SiteBackground } from "@/components/layout/site-background";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { LenisProvider } from "@/components/providers/lenis-provider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
 
@@ -131,15 +132,17 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <PageProgress />
-        <SiteBackground />
-        <Navbar />
-        <main id="main-content" className="relative z-10">
-          {children}
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <BackToTop />
+        <LenisProvider>
+          <PageProgress />
+          <SiteBackground />
+          <Navbar />
+          <main id="main-content" className="relative z-10">
+            {children}
+          </main>
+          <Footer />
+          <WhatsAppButton />
+          <BackToTop />
+        </LenisProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

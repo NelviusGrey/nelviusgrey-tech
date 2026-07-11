@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -94,7 +94,7 @@ export default function AboutPage() {
             <p className="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--brand-green)]">
               Founder story
             </p>
-            <h2 className="mt-5 font-display text-5xl font-light tracking-[-0.07em] text-white sm:text-7xl">
+            <h2 className="mt-5 font-display text-5xl font-light tracking-normal text-white sm:text-7xl">
               {siteConfig.founder.name}
             </h2>
             <p className="mt-3 text-white/54">{siteConfig.founder.title}</p>
@@ -144,7 +144,7 @@ export default function AboutPage() {
                 <p className="font-mono text-xs text-[color:var(--brand-green)]">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-6 font-display text-3xl font-light tracking-[-0.06em] text-white">{step.title}</h3>
+                <h3 className="mt-6 font-display text-3xl font-light tracking-normal text-white">{step.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-white/58">{step.text}</p>
               </Reveal>
             ))}

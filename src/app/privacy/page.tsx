@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/ui/page-header";
 import { legalContent, siteConfig } from "@/lib/constants";
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           <div className="grid gap-8">
             {content.sections.map((section) => (
               <article key={section.title} className="border-t border-white/10 pt-7">
-                <h2 className="font-display text-3xl font-light tracking-[-0.05em] text-white">
+                <h2 className="font-display text-3xl font-light tracking-normal text-white">
                   {section.title}
                 </h2>
                 <p className="mt-4 text-base leading-8 text-white/66">{section.body}</p>

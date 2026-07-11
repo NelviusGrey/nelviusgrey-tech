@@ -5,8 +5,18 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 
 import { insightCategories, insights, type InsightCategory } from "@/lib/constants";
-import type { TechArticle } from "@/lib/news";
 import { formatDate } from "@/lib/utils";
+
+type TechArticle = {
+  title: string;
+  source: string;
+  publishedAt: string;
+  description: string;
+  url: string;
+  imageUrl: string;
+  category: string;
+  isPlaceholder?: boolean;
+};
 
 export function BlogFeed() {
   const [category, setCategory] = useState<InsightCategory>("All");

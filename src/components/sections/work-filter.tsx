@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -62,7 +62,7 @@ export function WorkFilter() {
                 </span>
               </div>
               <div>
-                <h3 className="font-display text-3xl font-light tracking-[-0.06em] text-white sm:text-4xl">
+                <h3 className="font-display text-3xl font-light tracking-normal text-white sm:text-4xl">
                   {item.title}
                 </h3>
                 <p className="mt-4 max-w-xl text-sm leading-7 text-white/64">{item.summary}</p>

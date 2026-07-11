@@ -6,8 +6,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { MagneticLink } from "@/components/animations/magnetic-link";
 import { BrandMark } from "@/components/ui/brand-mark";
 import { navLinks, siteConfig } from "@/lib/constants";
+import { menuPanel } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -55,10 +57,17 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium text-white/58 transition hover:bg-white/[0.06] hover:text-white",
-                  active && "bg-white/[0.07] text-white",
+                  "relative rounded-md px-3 py-2 text-sm font-medium text-white/58 transition hover:bg-white/[0.06] hover:text-white",
+                  active && "text-white",
                 )}
               >
+                {active && (
+                  <motion.span
+                    layoutId="nav-active-pill"
+                    className="absolute inset-0 -z-10 rounded-md border border-white/10 bg-white/[0.07]"
+                    transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                )}
                 {link.label}
               </Link>
             );
@@ -66,13 +75,13 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link prefetch={false}
+          <MagneticLink
             href="/contact"
             className="inline-flex h-10 items-center gap-2 rounded-md bg-[color:var(--brand-green)] px-4 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 hover:shadow-[0_0_28px_var(--brand-glow)]"
           >
             Start a Project
             <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          </MagneticLink>
         </div>
 
         <button
@@ -89,10 +98,10 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={menuPanel}
             className="fixed inset-0 z-[45] bg-[#030504]/98 px-4 pb-8 pt-28 backdrop-blur-xl lg:hidden"
           >
             <div className="site-grid absolute inset-0 opacity-[0.35]" aria-hidden="true" />
@@ -113,7 +122,7 @@ export function Navbar() {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className={cn(
-                          "flex items-center justify-between border-b border-white/10 py-5 font-display text-4xl font-light tracking-[-0.06em] text-white/70 transition hover:text-white",
+                          "flex items-center justify-between border-b border-white/10 py-5 font-display text-4xl font-light tracking-normal text-white/70 transition hover:text-white",
                           active && "text-white",
                         )}
                       >
