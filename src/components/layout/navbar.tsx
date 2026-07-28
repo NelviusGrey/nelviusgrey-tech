@@ -34,7 +34,12 @@ export function Navbar() {
   }, [isOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-6 lg:px-8">
+    <motion.header
+      initial={{ opacity: 0, y: -18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-6 lg:px-8"
+    >
       <nav
         className={cn(
           "relative z-[55] mx-auto flex max-w-[88rem] items-center justify-between border px-4 py-3 transition-all duration-300",
@@ -57,7 +62,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative rounded-md px-3 py-2 text-sm font-medium text-white/58 transition hover:bg-white/[0.06] hover:text-white",
+                  "nav-link-swap relative overflow-hidden rounded-md px-3 py-2 text-sm font-medium text-white/58 transition hover:bg-white/[0.06] hover:text-white",
                   active && "text-white",
                 )}
               >
@@ -153,6 +158,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

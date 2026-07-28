@@ -6,17 +6,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-import { workCases, workFilters, type WorkFilter } from "@/lib/constants";
+import { BrandPhoto } from "@/components/media/brand-photo";
+import { workCases, workFilters, workProof, type WorkFilter } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function ProjectExhibition({ compact = false }: { compact?: boolean }) {
   const [filter, setFilter] = useState<WorkFilter>("All");
+  const orderedCases = useMemo(() => {
+    const priority = {
+      "Working product": 0,
+      "Working platform": 0,
+      "Delivered website": 1,
+      "Concept direction": 2,
+    };
+
+    return [...workCases].sort(
+      (a, b) =>
+        priority[workProof[a.slug]?.status ?? "Concept direction"] -
+        priority[workProof[b.slug]?.status ?? "Concept direction"],
+    );
+  }, []);
   const visible = useMemo(
     () =>
       filter === "All"
-        ? workCases
-        : workCases.filter((item) => item.filters.some((itemFilter) => itemFilter === filter)),
-    [filter],
+        ? orderedCases
+        : orderedCases.filter((item) => item.filters.some((itemFilter) => itemFilter === filter)),
+    [filter, orderedCases],
   );
   const [activeSlug, setActiveSlug] = useState(visible[0]?.slug ?? workCases[0].slug);
   const active = visible.find((item) => item.slug === activeSlug) ?? visible[0] ?? workCases[0];
@@ -24,6 +39,12 @@ export function ProjectExhibition({ compact = false }: { compact?: boolean }) {
 
   return (
     <div>
+      <BrandPhoto
+        mediaKey="collaborativeSystemReview"
+        className="mb-10 min-h-[27rem] sm:min-h-[36rem] lg:min-h-[44rem]"
+        sizes="(max-width: 1024px) 100vw, 88rem"
+      />
+
       <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
         {workFilters.map((item) => (
           <button
@@ -33,9 +54,9 @@ export function ProjectExhibition({ compact = false }: { compact?: boolean }) {
               setFilter(item);
               const next =
                 item === "All"
-                  ? workCases[0]
-                  : workCases.find((workCase) => workCase.filters.some((itemFilter) => itemFilter === item));
-              setActiveSlug(next?.slug ?? workCases[0].slug);
+                  ? orderedCases[0]
+                  : orderedCases.find((workCase) => workCase.filters.some((itemFilter) => itemFilter === item));
+              setActiveSlug(next?.slug ?? orderedCases[0].slug);
             }}
             className={cn(
               "shrink-0 rounded-md border px-4 py-2 text-sm font-medium transition",
@@ -107,7 +128,7 @@ export function ProjectExhibition({ compact = false }: { compact?: boolean }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--obsidian)] via-[rgba(3,5,4,0.72)] to-transparent" />
               <div className="absolute left-5 top-5 rounded-sm border border-white/10 bg-black/40 px-2 py-1 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-white/58">
-                Concept / Direction
+                {workProof[active.slug]?.ownership ?? "Project"}
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.26em] text-[color:var(--brand-green)]">
@@ -122,6 +143,14 @@ export function ProjectExhibition({ compact = false }: { compact?: boolean }) {
             <div className="grid gap-8 p-5 sm:p-8 xl:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <p className="text-base leading-8 text-white/68">{active.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="border border-[color:var(--brand-green)]/30 bg-[color:var(--brand-green-soft)] px-2.5 py-1 text-xs text-white/72">
+                    {workProof[active.slug]?.ownership ?? "Project"}
+                  </span>
+                  <span className="border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs text-white/58">
+                    {workProof[active.slug]?.status ?? "Project direction"}
+                  </span>
+                </div>
                 {!compact && <p className="mt-5 text-sm leading-7 text-white/54">{active.challenge}</p>}
               </div>
               <div>

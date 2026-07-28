@@ -6,15 +6,18 @@ export function PageHeader({
   title,
   description,
   className,
+  variant = "default",
 }: {
   eyebrow: string;
   title: string;
   description: string;
   className?: string;
+  variant?: "default" | "editorial" | "systems" | "gallery" | "contact";
 }) {
   return (
-    <section className={cn("px-4 pb-14 pt-36 sm:px-6 lg:px-8", className)}>
-      <Reveal className="mx-auto max-w-7xl">
+    <section data-route-environment={variant} className={cn("route-environment relative overflow-hidden px-4 pb-14 pt-36 sm:px-6 lg:px-8", className)}>
+      <div aria-hidden className="route-environment__field pointer-events-none absolute inset-0" />
+      <Reveal className="relative mx-auto max-w-7xl">
         <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--brand-green)]">
           {eyebrow}
         </p>

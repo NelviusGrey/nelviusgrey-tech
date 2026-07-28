@@ -6,7 +6,9 @@ import { navLinks, serviceCapabilities, siteConfig } from "@/lib/constants";
 
 export function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-[#020302]">
+    <footer className="relative z-10 overflow-hidden border-t border-white/10 bg-[#020302]">
+      <div aria-hidden className="site-grid pointer-events-none absolute inset-0 opacity-35" />
+      <div aria-hidden className="travelling-line absolute inset-x-0 top-0 h-px opacity-60" />
       <div className="mx-auto grid max-w-[88rem] gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.25fr_0.75fr_0.9fr_1fr] lg:px-8">
         <div>
           <BrandMark />
@@ -78,7 +80,14 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="relative border-t border-white/10 px-4 py-6 sm:px-6 lg:px-8">
+        <Link
+          href="/contact"
+          data-cursor="Start"
+          className="footer-wordmark mx-auto mb-12 block max-w-[88rem] overflow-hidden border-b border-white/10 pb-8 font-display text-[clamp(3.5rem,11vw,10rem)] font-light leading-[0.8] tracking-[-0.06em] text-white/10 transition-colors hover:text-[color:var(--brand-green)]/38"
+        >
+          Let&apos;s build what&apos;s next.
+        </Link>
         <div className="mx-auto flex max-w-[88rem] flex-col gap-3 text-xs text-white/42 sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright {new Date().getFullYear()} NelviusGrey Tech. All rights reserved.</p>
           <p>Technology for Change. Systems for the Future.</p>

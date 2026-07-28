@@ -26,7 +26,7 @@ export const siteConfig = {
     green: "#00a438",
     logoPath: "/brand/logo-mark.png",
     fullLogoSource: "/images/logo/nelviusgrey-tech-logo.png",
-    founderPhoto: "/images/founder/ighere-g-nelson.png",
+    founderPhoto: "/images/founder/ighere-g-nelson-portrait.png",
   },
 } as const;
 
@@ -344,12 +344,17 @@ export const workCases = [
     approach:
       "We shape the experience around portfolio intake, scoring logic, review states, and reporting outputs that can be explained and improved.",
     delivered:
-      "Conceptual product architecture, dashboard patterns, reporting flows, and climate-finance interface direction.",
+      "A working climate-intelligence workspace spanning portfolio intake, SBTi coverage, temperature alignment, financed emissions, scenarios, trajectory analysis, and geospatial risk views.",
     technology: ["Next.js concepts", "Data modelling", "Dashboard UX", "Climate workflow design"],
     lessons:
       "Climate-finance systems need strong data structure and careful explanation as much as visual polish.",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=82",
+    image: "/images/work/finz-fint/sbti-coverage-light.png",
+    gallery: [
+      { src: "/images/work/finz-fint/sbti-coverage-light.png", alt: "FINZ/FINT SBTi coverage dashboard in light mode" },
+      { src: "/images/work/finz-fint/portfolio-overview-dark.png", alt: "FINZ/FINT portfolio overview in dark mode" },
+      { src: "/images/work/finz-fint/scenario-analysis.png", alt: "FINZ/FINT counterparty scenario analysis" },
+      { src: "/images/work/finz-fint/geospatial-risk.png", alt: "FINZ/FINT geospatial portfolio risk view" },
+    ],
   },
   {
     slug: "sbti-temperature-scoring-tool",
@@ -402,7 +407,7 @@ export const workCases = [
     filters: ["Digital Products", "Automation"],
     capabilities: ["Invoice workflows", "Mobile product UX", "Document generation"],
     summary:
-      "A lightweight productivity product direction for entrepreneurs and small businesses managing invoices, receipts, and customer records.",
+      "A NelviusGrey product for entrepreneurs and small businesses creating branded invoices, receipts, and customer-ready documents.",
     context:
       "Many small businesses need simple tools that remove admin friction without forcing them into enterprise software complexity.",
     challenge:
@@ -410,12 +415,51 @@ export const workCases = [
     approach:
       "We structure the product around repeatable document flows, customer details, item records, and clean export-ready outputs.",
     delivered:
-      "Product concept, workflow map, interface direction, and document-generation logic.",
+      "A desktop and mobile product experience with invoice and receipt creation, document history, branding tools, reusable stamps, and export workflows.",
     technology: ["Mobile-first UI", "Document generation", "Local business workflows", "Automation"],
     lessons:
       "SME tools work best when they focus on one painful workflow and make it feel effortless.",
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=82",
+    image: "/images/work/shapbill/product-presentation.png",
+    gallery: [
+      { src: "/images/work/shapbill/product-presentation.png", alt: "ShapBill product and document presentation" },
+      { src: "/images/work/shapbill/desktop-dashboard.png", alt: "ShapBill desktop workspace dashboard" },
+    ],
+  },
+  {
+    slug: "nelvius-bank",
+    title: "Nelvius Bank",
+    category: "FinTech / Mobile Product",
+    filters: ["Digital Products", "Automation"],
+    capabilities: ["Mobile banking UX", "Transaction flows", "Product identity"],
+    summary: "A mobile banking product concept focused on approachable everyday account, card, transfer, and payment workflows.",
+    context: "Everyday banking products must make sensitive financial actions feel clear, trustworthy, and quick on a small screen.",
+    challenge: "The interface needed to balance brand warmth with familiar financial patterns and strong action hierarchy.",
+    approach: "We explored onboarding, account overview, transfers, cards, bills, and recent activity as a connected mobile journey.",
+    delivered: "Mobile product direction, visual identity application, onboarding screens, account dashboard, card views, and transfer flows.",
+    technology: ["Mobile UX", "FinTech workflows", "Design systems", "Product prototyping"],
+    lessons: "Financial interfaces earn confidence through clarity, recognizable patterns, and careful information hierarchy.",
+    image: "/images/work/nelvius-bank/mobile-presentation.png",
+    gallery: [
+      { src: "/images/work/nelvius-bank/mobile-presentation.png", alt: "Nelvius Bank mobile product presentation" },
+      { src: "/images/work/nelvius-bank/mobile-screens.png", alt: "Nelvius Bank onboarding, dashboard, and transfer screens" },
+      { src: "/images/work/nelvius-bank/mobile-features.png", alt: "Nelvius Bank dashboard and cards experience" },
+    ],
+  },
+  {
+    slug: "exports-royale",
+    title: "Exports Royale",
+    category: "Web Experience / Export Business",
+    filters: ["Web Experiences", "Digital Products"],
+    capabilities: ["Premium web design", "Conversion journey", "Brand presentation"],
+    summary: "A premium web presence for a Nigerian export business presenting its produce, standards, process, and quote journey.",
+    context: "Export buyers need immediate confidence in product quality, sourcing credibility, standards, and fulfilment capability.",
+    challenge: "The website needed to feel distinctly Nigerian and premium while keeping product discovery and quote requests direct.",
+    approach: "We combined editorial typography, agricultural atmosphere, trust signals, and a clear commercial navigation system.",
+    delivered: "Responsive website direction, premium hero experience, product presentation, trust content, and quote-focused calls to action.",
+    technology: ["Responsive web design", "Conversion UX", "Brand systems", "Frontend implementation"],
+    lessons: "Premium positioning works best when visual confidence and practical buyer reassurance arrive together.",
+    image: "/images/work/exports-royale/homepage.png",
+    gallery: [{ src: "/images/work/exports-royale/homepage.png", alt: "Exports Royale premium homepage" }],
   },
   {
     slug: "urban-heat-risk-intelligence-tool",
@@ -438,6 +482,25 @@ export const workCases = [
       "A good map is not just a picture; it is an interface for asking better questions.",
     image:
       "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1600&q=82",
+  },
+  {
+    slug: "excel-expert-cleaning-services",
+    title: "Excel Expert Cleaning Services",
+    category: "Web Experience / Service Business",
+    filters: ["Web Experiences", "Digital Products"],
+    capabilities: ["Service-business website", "Booking journey", "Responsive brand experience"],
+    summary: "A branded website for a professional cleaning company, designed to introduce the team, explain services, and direct visitors toward booking and contact.",
+    context: "A local service business needs to establish trust quickly while making its services and next actions obvious to prospective customers.",
+    challenge: "The experience needed to carry the company’s green visual identity, human team imagery, and relaxed brand promise without obscuring booking and contact paths.",
+    approach: "We shaped the homepage around clear navigation, a recognizable service promise, visible team photography, and prominent booking and contact actions.",
+    delivered: "Responsive homepage concepts, branded hero treatments, service-business navigation, team presentation, booking calls to action, and cookie-consent treatment.",
+    technology: ["Responsive web design", "Service UX", "Brand application", "Frontend implementation"],
+    lessons: "For service businesses, real people, a direct promise, and an unmistakable booking path do more work than excessive interface complexity.",
+    image: "/images/work/excel-expert-cleaning/homepage-green.png",
+    gallery: [
+      { src: "/images/work/excel-expert-cleaning/homepage-green.png", alt: "Excel Expert Cleaning Services green homepage direction" },
+      { src: "/images/work/excel-expert-cleaning/homepage-editorial.png", alt: "Excel Expert Cleaning Services editorial homepage with team and cookie controls" },
+    ],
   },
   {
     slug: "clidafdig-enterprise-digital-presence",
@@ -464,6 +527,79 @@ export const workCases = [
 ] as const;
 
 export type WorkCase = (typeof workCases)[number];
+
+export const workProof: Record<
+  string,
+  {
+    ownership: "NelviusGrey product" | "Client work" | "Platform work" | "Exploratory concept";
+    status: "Working product" | "Delivered website" | "Working platform" | "Concept direction";
+  }
+> = {
+  "finz-fint-climate-finance-platform": {
+    ownership: "Platform work",
+    status: "Working platform",
+  },
+  shapbill: {
+    ownership: "NelviusGrey product",
+    status: "Working product",
+  },
+  "nelvius-bank": {
+    ownership: "NelviusGrey product",
+    status: "Concept direction",
+  },
+  "exports-royale": {
+    ownership: "Client work",
+    status: "Delivered website",
+  },
+  "excel-expert-cleaning-services": {
+    ownership: "Client work",
+    status: "Delivered website",
+  },
+  "sbti-temperature-scoring-tool": {
+    ownership: "Platform work",
+    status: "Concept direction",
+  },
+  "social-development-data-management-system": {
+    ownership: "Exploratory concept",
+    status: "Concept direction",
+  },
+  "urban-heat-risk-intelligence-tool": {
+    ownership: "Exploratory concept",
+    status: "Concept direction",
+  },
+  "clidafdig-enterprise-digital-presence": {
+    ownership: "Client work",
+    status: "Concept direction",
+  },
+};
+
+export const projectEntryPaths = [
+  {
+    label: "Build a digital product",
+    description: "Web or mobile products, customer portals and operational applications.",
+    service: "Digital Products and Platforms",
+  },
+  {
+    label: "Improve a data system",
+    description: "Dashboards, reporting systems, MIS platforms and decision workflows.",
+    service: "Data Systems and Decision Intelligence",
+  },
+  {
+    label: "Develop a climate platform",
+    description: "Climate intelligence, financed emissions, geospatial and risk systems.",
+    service: "ClimateTech and Geospatial Solutions",
+  },
+  {
+    label: "Automate a workflow",
+    description: "Practical AI, document flows and repetitive business operations.",
+    service: "AI Workflows and Business Automation",
+  },
+  {
+    label: "Redesign a business website",
+    description: "Credible, responsive web experiences built around enquiries and growth.",
+    service: "Digital Transformation and Technology Advisory",
+  },
+] as const;
 
 export const insightCategories = [
   "All",

@@ -3,13 +3,20 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
-import { pageVariants } from "@/lib/motion";
-
 export function PageTransition({ children }: { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <motion.div initial={prefersReducedMotion ? false : "hidden"} animate="visible" variants={pageVariants}>
+    <motion.div initial={false} animate={{ opacity: 1, y: 0 }}>
+      {!prefersReducedMotion && (
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-[85] origin-top bg-[#031008]"
+          initial={{ scaleY: 1 }}
+          animate={{ scaleY: 0 }}
+          transition={{ duration: 0.58, ease: [0.76, 0, 0.24, 1] }}
+        />
+      )}
       {!prefersReducedMotion && (
         <motion.div
           aria-hidden="true"

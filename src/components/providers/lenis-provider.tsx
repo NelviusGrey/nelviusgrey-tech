@@ -5,39 +5,26 @@ import { useEffect } from "react";
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      return;
-    }
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduced.matches) return;
 
     const lenis = new Lenis({
-      lerp: 0.08,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1,
+      duration: 1.05,
+      easing: (value) => Math.min(1, 1.001 - 2 ** (-10 * value)),
+      smoothWheel: true,
+      syncTouch: false,
     });
-
     let frame = 0;
-    const raf = (time: number) => {
+
+    const tick = (time: number) => {
       lenis.raf(time);
-      frame = requestAnimationFrame(raf);
+      frame = requestAnimationFrame(tick);
     };
 
-    frame = requestAnimationFrame(raf);
-
-    const onVisibilityChange = () => {
-      if (document.hidden) {
-        lenis.stop();
-      } else {
-        lenis.start();
-      }
-    };
-
-    document.addEventListener("visibilitychange", onVisibilityChange);
+    frame = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(frame);
-      document.removeEventListener("visibilitychange", onVisibilityChange);
       lenis.destroy();
     };
   }, []);

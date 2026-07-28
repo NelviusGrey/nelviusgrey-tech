@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
+import { BrandPhoto } from "@/components/media/brand-photo";
 import { HoneycombNetwork } from "@/components/visual/honeycomb-network";
 import { Icon } from "@/components/ui/icon";
 import { serviceCapabilities, type ServiceCapability } from "@/lib/constants";
@@ -84,60 +85,79 @@ function ServiceDetail({
         <Link
           prefetch={false}
           href={compact ? `/services#${service.slug}` : "/contact"}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand-green)]"
+          data-cursor="Explore"
+          className="group inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand-green)]"
         >
           {compact ? "Explore capability" : "Discuss this service"}
-          <ArrowUpRight className="h-4 w-4" />
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </Link>
       </div>
     </motion.div>
   );
 }
 
-export function InteractiveServices({ compact = false }: { compact?: boolean }) {
+export function InteractiveServices({
+  compact = false,
+  showBrandMedia = false,
+}: {
+  compact?: boolean;
+  showBrandMedia?: boolean;
+}) {
   const [active, setActive] = useState(0);
   const activeService = serviceCapabilities[active];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
-      <div className="grid gap-2">
-        {serviceCapabilities.map((service, index) => {
-          const selected = index === active;
+    <div>
+      <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
+        <div className="grid gap-2">
+          {serviceCapabilities.map((service, index) => {
+            const selected = index === active;
 
-          return (
-            <button
-              key={service.slug}
-              id={service.slug}
-              type="button"
-              onClick={() => setActive(index)}
-              onMouseEnter={() => setActive(index)}
-              className={cn(
-                "group grid grid-cols-[2.75rem_1fr_auto] items-center gap-4 border px-4 py-4 text-left transition duration-300",
-                selected
-                  ? "border-[color:var(--line-green)] bg-[color:var(--brand-green-soft)] text-white shadow-[0_0_42px_rgba(0,164,56,0.08)]"
-                  : "border-white/10 bg-white/[0.025] text-white/58 hover:border-white/22 hover:text-white",
-              )}
-              aria-pressed={selected}
-            >
-              <span className="font-mono text-xs text-[color:var(--brand-green)]">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="font-display text-xl font-light leading-tight tracking-normal">
-                {service.title}
-              </span>
-              <span className="h-px w-8 bg-white/12 transition group-hover:bg-[color:var(--brand-green)]/60" />
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={service.slug}
+                id={service.slug}
+                type="button"
+                onClick={() => setActive(index)}
+                onMouseEnter={() => setActive(index)}
+                onFocus={() => setActive(index)}
+                data-cursor="Open"
+                className={cn(
+                  "group grid grid-cols-[2.75rem_1fr_auto] items-center gap-4 border px-4 py-4 text-left transition duration-300",
+                  selected
+                    ? "border-[color:var(--line-green)] bg-[color:var(--brand-green-soft)] text-white shadow-[0_0_42px_rgba(0,164,56,0.08)]"
+                    : "border-white/10 bg-white/[0.025] text-white/58 hover:border-white/22 hover:text-white",
+                )}
+                aria-pressed={selected}
+              >
+                <span className="font-mono text-xs text-[color:var(--brand-green)]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-xl font-light leading-tight tracking-normal">
+                  {service.title}
+                </span>
+                <span className="h-px w-8 bg-white/12 transition group-hover:bg-[color:var(--brand-green)]/60" />
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="relative min-h-[32rem] overflow-hidden border border-white/10 bg-[color:var(--carbon)]/82 p-5 sm:p-8">
+          <HoneycombNetwork activeIndex={active} compact={compact} className="absolute inset-0 min-h-0 border-0 opacity-55" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--carbon)] via-[rgba(7,9,8,0.78)] to-[rgba(3,5,4,0.5)]" />
+          <AnimatePresence mode="wait">
+            <ServiceDetail service={activeService} index={active} compact={compact} />
+          </AnimatePresence>
+        </div>
       </div>
 
-      <div className="relative min-h-[32rem] overflow-hidden border border-white/10 bg-[color:var(--carbon)]/82 p-5 sm:p-8">
-        <HoneycombNetwork activeIndex={active} compact={compact} className="absolute inset-0 min-h-0 border-0 opacity-55" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--carbon)] via-[rgba(7,9,8,0.78)] to-[rgba(3,5,4,0.5)]" />
-        <AnimatePresence mode="wait">
-          <ServiceDetail service={activeService} index={active} compact={compact} />
-        </AnimatePresence>
-      </div>
+      {showBrandMedia && (
+        <BrandPhoto
+          mediaKey="cybersecurityAnalysis"
+          className="mt-8 min-h-[26rem] sm:min-h-[34rem] lg:min-h-[42rem]"
+          sizes="(max-width: 1024px) 100vw, 88rem"
+        />
+      )}
     </div>
   );
 }

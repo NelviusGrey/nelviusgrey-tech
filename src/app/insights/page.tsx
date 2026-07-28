@@ -19,6 +19,7 @@ export default function InsightsPage() {
         eyebrow="Insights"
         title="Notes on building digital systems that survive beyond launch."
         description="Internally authored thinking about social impact technology, useful organisational data, climate intelligence, practical AI and durable digital infrastructure."
+        variant="editorial"
       />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">

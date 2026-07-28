@@ -23,8 +23,8 @@ export function MaskedText({
   return (
     <MotionTag
       className={cn("inline-flex flex-wrap", className)}
-      initial={prefersReducedMotion ? false : "hidden"}
-      animate="visible"
+      initial={false}
+      animate={prefersReducedMotion ? undefined : "visible"}
       variants={wordContainer}
     >
       {words.map((word, index) => (

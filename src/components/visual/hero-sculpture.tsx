@@ -2,7 +2,7 @@
 
 import { Float, Line, PerspectiveCamera, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Component, type ReactNode, useMemo, useRef } from "react";
 import type { Group } from "three";
 
@@ -104,7 +104,9 @@ class WebGLErrorBoundary extends Component<
 }
 
 export function HeroSculpture() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const visible = useInView(containerRef, { margin: "180px" });
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.28], [0, 54]);
   const opacity = useTransform(scrollYProgress, [0, 0.35], [1, 0.62]);
@@ -115,17 +117,18 @@ export function HeroSculpture() {
 
   return (
     <motion.div
-      className="relative h-[34rem] w-full overflow-hidden rounded-[2px] border border-[color:var(--line-green)] bg-[color:var(--carbon)]/72 shadow-[var(--shadow-deep)]"
+      ref={containerRef}
+      className="relative h-full min-h-[27rem] w-full overflow-hidden rounded-[42%_58%_46%_54%/54%_44%_56%_46%] border border-[color:var(--line-green)]/45 bg-[radial-gradient(circle_at_50%_55%,rgba(0,164,56,.13),rgba(4,12,8,.74)_58%,transparent_76%)] shadow-[0_0_90px_rgba(0,164,56,.12)] lg:min-h-[39rem]"
       style={{ y, opacity }}
       aria-hidden="true"
     >
-      <div className="site-grid absolute inset-0 opacity-35" />
+      <div className="site-grid absolute inset-0 opacity-20" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(0,164,56,0.24),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent)]" />
       <WebGLErrorBoundary fallback={<SculptureFallback />}>
         <Canvas
           gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
           dpr={[1, 1.45]}
-          frameloop="always"
+          frameloop={visible ? "always" : "never"}
         >
           <PerspectiveCamera makeDefault position={[0, 0, 3.2]} fov={42} />
           <ambientLight intensity={0.8} />

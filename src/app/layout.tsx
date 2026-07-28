@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Manrope, Sora } from "next/font/google";
 import { BackToTop } from "@/components/layout/back-to-top";
 import { Footer } from "@/components/layout/footer";
+import { BrandLoader } from "@/components/layout/brand-loader";
+import { CustomCursor } from "@/components/layout/custom-cursor";
 import { Navbar } from "@/components/layout/navbar";
 import { PageProgress } from "@/components/layout/page-progress";
 import { SiteBackground } from "@/components/layout/site-background";
@@ -9,24 +10,6 @@ import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { siteConfig } from "@/lib/constants";
 import "./globals.css";
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -121,10 +104,7 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="en"
-      className={`${sora.variable} ${manrope.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="min-h-full bg-background text-foreground">
         <a
           href="#main-content"
@@ -133,6 +113,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <LenisProvider>
+          <BrandLoader />
           <PageProgress />
           <SiteBackground />
           <Navbar />
@@ -142,6 +123,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppButton />
           <BackToTop />
+          <CustomCursor />
         </LenisProvider>
         <script
           type="application/ld+json"

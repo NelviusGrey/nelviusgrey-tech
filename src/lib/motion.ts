@@ -14,6 +14,12 @@ export const motionTokens = {
     card: 0.08,
     line: 0.12,
   },
+  spring: {
+    responsive: { stiffness: 260, damping: 28, mass: 0.7 },
+    gentle: { stiffness: 120, damping: 24, mass: 0.9 },
+  },
+  depth: { hover: 8, parallax: 72 },
+  glow: { quiet: 0.18, active: 0.42 },
 } as const;
 
 export const pageVariants: Variants = {

@@ -19,11 +19,12 @@ export default function SolutionsPage() {
         eyebrow="Solutions"
         title="Sector-aware technology for the operational challenges behind the interface."
         description="Solutions are organised by industry and operational problem, not by generic service labels. The goal is to shape systems around context."
+        variant="systems"
       />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[88rem]">
-          <SectorSwitcher />
+          <SectorSwitcher showBrandMedia />
         </div>
       </section>
 

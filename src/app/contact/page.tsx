@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Download, Facebook, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { Reveal } from "@/components/animations/reveal";
+import { BrandPhoto } from "@/components/media/brand-photo";
 import { ContactForm } from "@/components/sections/contact-form";
 import { PageHeader } from "@/components/ui/page-header";
-import { siteConfig } from "@/lib/constants";
+import { projectEntryPaths, serviceCapabilities, siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -51,18 +52,56 @@ const contactOptions = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ service?: string }>;
+}) {
+  const { service } = await searchParams;
+  const initialService = serviceCapabilities.some((item) => item.title === service)
+    ? service
+    : undefined;
+
   return (
     <>
       <PageHeader
         eyebrow="Contact"
         title="Tell us what you are trying to improve."
         description="Share the problem, system, workflow or digital product you want to shape. We will help you turn it into a practical technology direction."
+        variant="contact"
       />
+
+      <section className="px-4 pb-4 sm:px-6 lg:px-8" aria-labelledby="project-path-title">
+        <div className="mx-auto max-w-[88rem]">
+          <p className="font-mono text-xs uppercase tracking-[0.28em] text-[color:var(--brand-green)]">
+            Choose a starting point
+          </p>
+          <h2 id="project-path-title" className="mt-4 max-w-3xl font-display text-3xl font-light text-white sm:text-5xl">
+            What are you trying to build or improve?
+          </h2>
+          <div className="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+            {projectEntryPaths.map((path) => (
+              <a
+                key={path.label}
+                href={`/contact?service=${encodeURIComponent(path.service)}#project-form`}
+                className="border border-white/10 bg-white/[0.025] p-5 transition hover:border-[color:var(--brand-green)]/45 hover:bg-[color:var(--brand-green-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--brand-green)]"
+              >
+                <span className="block font-semibold text-white">{path.label}</span>
+                <span className="mt-3 block text-sm leading-6 text-white/55">{path.description}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto grid w-full max-w-[88rem] gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="grid min-w-0 gap-3">
+            <BrandPhoto
+              mediaKey="cloudInfrastructure"
+              className="mb-3 min-h-[22rem] sm:min-h-[28rem]"
+              sizes="(max-width: 1024px) 100vw, 36vw"
+            />
             {contactOptions.map((option, index) => {
               const Icon = option.icon;
 
@@ -100,8 +139,8 @@ export default function ContactPage() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.08} className="min-w-0">
-            <ContactForm />
+          <Reveal delay={0.08} className="min-w-0" id="project-form">
+            <ContactForm initialService={initialService} />
           </Reveal>
         </div>
       </section>

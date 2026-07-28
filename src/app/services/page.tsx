@@ -17,11 +17,12 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Capabilities for organisations that need technology to become operational infrastructure."
         description="Each service is designed around the problem it addresses, the deliverables it can produce, who it serves and how it connects to related capabilities."
+        variant="systems"
       />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[88rem]">
-          <InteractiveServices />
+          <InteractiveServices showBrandMedia />
         </div>
       </section>
 

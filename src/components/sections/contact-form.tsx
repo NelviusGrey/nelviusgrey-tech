@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -56,10 +57,10 @@ function FieldError({ message }: { message?: string }) {
     return null;
   }
 
-  return <p className="text-xs text-red-200">{message}</p>;
+  return <p role="alert" className="text-xs text-red-200">{message}</p>;
 }
 
-export function ContactForm() {
+export function ContactForm({ initialService }: { initialService?: string }) {
   const [status, setStatus] = useState<FormStatus>({ state: "idle" });
   const {
     register,
@@ -72,7 +73,7 @@ export function ContactForm() {
       email: "",
       phone: "",
       organisation: "",
-      service: serviceCapabilities[0].title,
+      service: initialService ?? serviceCapabilities[0].title,
       stage: projectStages[0],
       budget: budgetRanges[0],
       timeline: timelines[0],
@@ -128,40 +129,44 @@ export function ContactForm() {
   }
 
   return (
-    <form className="w-full min-w-0 border border-white/10 bg-[#060806]/80 p-5 sm:p-6" onSubmit={handleSubmit(onSubmit)}>
+    <form noValidate className="w-full min-w-0 border border-white/10 bg-[#060806]/80 p-5 sm:p-6" onSubmit={handleSubmit(onSubmit)}>
       <input type="text" className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Full name
-          <input {...register("fullName")} className={cn(inputClass, errors.fullName && "border-red-300/50")} placeholder="Your name" />
+          <input {...register("fullName")} aria-invalid={!!errors.fullName} autoComplete="name" className={cn(inputClass, errors.fullName && "border-red-300/50")} placeholder="Your name" />
           <FieldError message={errors.fullName?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Work email
           <input
             {...register("email")}
             type="email"
+            aria-invalid={!!errors.email}
+            autoComplete="email"
             className={cn(inputClass, errors.email && "border-red-300/50")}
             placeholder="you@organisation.com"
           />
           <FieldError message={errors.email?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Phone / WhatsApp
-          <input {...register("phone")} className={cn(inputClass, errors.phone && "border-red-300/50")} placeholder="+234..." />
+          <input {...register("phone")} aria-invalid={!!errors.phone} autoComplete="tel" inputMode="tel" className={cn(inputClass, errors.phone && "border-red-300/50")} placeholder="+234..." />
           <FieldError message={errors.phone?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Organisation
           <input
             {...register("organisation")}
+            aria-invalid={!!errors.organisation}
+            autoComplete="organization"
             className={cn(inputClass, errors.organisation && "border-red-300/50")}
             placeholder="Company, NGO, agency, or team"
           />
           <FieldError message={errors.organisation?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Service needed
           <select {...register("service")} className={inputClass}>
             {serviceCapabilities.map((service) => (
@@ -170,7 +175,7 @@ export function ContactForm() {
           </select>
           <FieldError message={errors.service?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Project stage
           <select {...register("stage")} className={inputClass}>
             {projectStages.map((stage) => (
@@ -179,7 +184,7 @@ export function ContactForm() {
           </select>
           <FieldError message={errors.stage?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Estimated budget range
           <select {...register("budget")} className={inputClass}>
             {budgetRanges.map((range) => (
@@ -188,7 +193,7 @@ export function ContactForm() {
           </select>
           <FieldError message={errors.budget?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76">
           Preferred timeline
           <select {...register("timeline")} className={inputClass}>
             {timelines.map((timeline) => (
@@ -197,7 +202,7 @@ export function ContactForm() {
           </select>
           <FieldError message={errors.timeline?.message} />
         </label>
-        <label className="grid gap-2 text-sm font-medium text-white/76 sm:col-span-2">
+        <label className="form-field grid gap-2 text-sm font-medium text-white/76 sm:col-span-2">
           Project description
           <textarea
             {...register("description")}
@@ -226,22 +231,25 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        data-cursor="Send"
+        className="premium-button mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[color:var(--brand-green)] px-6 text-sm font-semibold text-[#021008] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {isSubmitting ? "Sending..." : "Send Project Enquiry"}
         <Send className="h-4 w-4" />
       </button>
 
-      {status.state === "success" && (
-        <p className="mt-4 rounded-md border border-[color:var(--brand-green)]/30 bg-[color:var(--brand-green-soft)] px-4 py-3 text-sm text-white">
-          {status.message}
-        </p>
-      )}
-      {status.state === "error" && (
-        <p className="mt-4 rounded-md border border-red-400/25 bg-red-500/10 px-4 py-3 text-sm text-red-100">
-          {status.message}
-        </p>
-      )}
+      <AnimatePresence mode="wait">
+        {status.state === "success" && (
+          <motion.p key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} role="status" aria-live="polite" className="mt-4 rounded-md border border-[color:var(--brand-green)]/30 bg-[color:var(--brand-green-soft)] px-4 py-3 text-sm text-white">
+            {status.message}
+          </motion.p>
+        )}
+        {status.state === "error" && (
+          <motion.p key="error" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} role="alert" className="mt-4 rounded-md border border-red-400/25 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+            {status.message}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </form>
   );
 }

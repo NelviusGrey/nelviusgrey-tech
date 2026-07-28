@@ -17,6 +17,7 @@ export default function WorkPage() {
         eyebrow="Work"
         title="Selected work and solution concepts, presented with honest context."
         description="A filterable index of product directions, data systems, climate-intelligence concepts, social-impact systems, business tools and web experiences."
+        variant="gallery"
       />
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">

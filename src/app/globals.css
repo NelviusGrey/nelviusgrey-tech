@@ -19,8 +19,8 @@
   --brand-green-dark: #006f26;
   --dim-green: rgba(0, 164, 56, 0.08);
   --brand-green-soft: rgba(0, 164, 56, 0.16);
-  --brand-glow: rgba(0, 164, 56, 0.42);
-  --emerald-bloom: rgba(0, 164, 56, 0.52);
+  --brand-glow: rgba(24, 222, 91, 0.52);
+  --emerald-bloom: rgba(48, 255, 118, 0.62);
   --shadow-deep: 0 34px 120px rgba(0, 0, 0, 0.5);
   --shadow-panel: 0 22px 70px rgba(0, 0, 0, 0.38);
   --silver: #c6ccc6;
@@ -29,9 +29,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Manrope", "Manrope Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Sora", "Sora Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-sans: "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Aptos Display", "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Cascadia Mono", "Consolas", ui-monospace, monospace;
 }
 
 * {
@@ -100,6 +100,132 @@ textarea {
     radial-gradient(ellipse at 30% 26%, transparent 0 28%, rgba(0, 164, 56, 0.1) 28.2% 28.35%, transparent 28.55%),
     radial-gradient(ellipse at 72% 66%, transparent 0 22%, rgba(245, 242, 234, 0.08) 22.2% 22.35%, transparent 22.55%),
     radial-gradient(ellipse at 76% 68%, transparent 0 31%, rgba(0, 164, 56, 0.09) 31.2% 31.35%, transparent 31.55%);
+}
+
+.hero-headline > span {
+  animation: hero-line-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-headline > span:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.hero-headline > span:nth-child(3) {
+  animation-delay: 150ms;
+}
+
+.hero-headline > span:nth-child(4) {
+  animation-delay: 220ms;
+}
+
+.premium-button,
+.button-outline-sweep {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.premium-button::before,
+.button-outline-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateX(-110%);
+  background: linear-gradient(110deg, transparent 15%, rgba(255, 255, 255, 0.34) 48%, transparent 78%);
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-button:hover,
+.button-outline-sweep:hover {
+  transform: translateY(-2px);
+}
+
+.premium-button:hover {
+  box-shadow: 0 16px 44px rgba(0, 164, 56, 0.3);
+}
+
+.button-outline-sweep:hover {
+  border-color: rgba(0, 164, 56, 0.65);
+}
+
+.premium-button:hover::before,
+.button-outline-sweep:hover::before {
+  transform: translateX(110%);
+}
+
+.nav-link-swap::after {
+  content: "";
+  position: absolute;
+  inset: auto 0.75rem 0.25rem;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: var(--brand-green);
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link-swap:hover::after,
+.nav-link-swap:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.form-field {
+  transition: color 260ms ease;
+}
+
+.form-field:focus-within {
+  color: var(--brand-green);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  transition:
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background-color 260ms ease,
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-field:focus-within input,
+.form-field:focus-within select,
+.form-field:focus-within textarea {
+  background-color: rgba(0, 164, 56, 0.045);
+  box-shadow: 0 0 0 3px rgba(0, 164, 56, 0.09);
+  transform: translateY(-1px);
+}
+
+.footer-wordmark {
+  text-wrap: balance;
+}
+
+.footer-wordmark:hover {
+  letter-spacing: -0.045em;
+}
+
+@media (min-width: 768px) {
+  .footer-wordmark {
+    text-wrap: nowrap;
+  }
+}
+
+@keyframes hero-line-enter {
+  from {
+    opacity: 0;
+    transform: translateY(38px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 .technical-frame {
@@ -241,4 +367,27 @@ textarea {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.route-environment__field {
+  opacity: 0.7;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+[data-route-environment="systems"] .route-environment__field {
+  background-image: linear-gradient(rgba(0,164,56,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,164,56,.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  transform: perspective(600px) rotateX(58deg) scale(1.4) translateY(-16%);
+}
+
+[data-route-environment="gallery"] .route-environment__field {
+  background: linear-gradient(110deg, transparent 20%, rgba(0,164,56,.12) 50%, transparent 72%), repeating-linear-gradient(90deg, transparent 0 12%, rgba(255,255,255,.035) 12.1% 12.2%);
+}
+
+[data-route-environment="editorial"] .route-environment__field {
+  background: radial-gradient(circle at 78% 42%, rgba(199,185,138,.11), transparent 22rem), linear-gradient(90deg, transparent 0 66%, rgba(255,255,255,.04) 66% 66.1%, transparent 66.1%);
+}
+
+[data-route-environment="contact"] .route-environment__field {
+  background: radial-gradient(circle at 72% 52%, rgba(0,164,56,.2), transparent 18rem), radial-gradient(circle at 72% 52%, transparent 0 8rem, rgba(0,164,56,.1) 8.1rem 8.2rem, transparent 8.3rem);
 }
