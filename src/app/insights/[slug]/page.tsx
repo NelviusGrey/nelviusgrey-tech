@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/ui/page-header";
 import { getInsight, insights } from "@/lib/constants";
+import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return insights.map((item) => ({ slug: item.slug }));
@@ -23,15 +24,17 @@ export async function generateMetadata({
   }
 
   return {
+    ...createPageMetadata({
+      title: article.title,
+      description: article.description,
+      path: `/insights/${article.slug}`,
+      image: article.cover,
+      imageAlt: article.title,
+      type: "article",
+    }),
     title: article.title,
     description: article.description,
     authors: [{ name: article.author }],
-    openGraph: {
-      title: article.title,
-      description: article.description,
-      images: [{ url: article.cover, alt: article.title }],
-      type: "article",
-    },
   };
 }
 
@@ -50,10 +53,22 @@ export default async function InsightPage({
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    url: absoluteUrl(`/insights/${article.slug}`),
+    mainEntityOfPage: absoluteUrl(`/insights/${article.slug}`),
     headline: article.title,
     description: article.description,
+    image: absoluteUrl(article.cover),
     author: article.author,
     datePublished: article.date,
+    publisher: {
+      "@type": "Organization",
+      name: "NelviusGrey Tech",
+      url: absoluteUrl("/"),
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/brand/logo-mark.png"),
+      },
+    },
   };
 
   return (

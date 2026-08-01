@@ -1,5 +1,6 @@
 import Parser from "rss-parser";
 
+import { SITE_URL } from "@/lib/constants";
 import { fallbackNews } from "@/lib/news/fallback";
 import { dedupeArticles, inferCategory, safeUrl, stripHtml } from "@/lib/news/normalise";
 import { gdeltQueries, rssSources, type NewsSource } from "@/lib/news/sources";
@@ -126,7 +127,7 @@ async function fetchGdelt(requested: NewsCategory): Promise<NewsArticle[]> {
     const response = await fetch(url, {
       next: { revalidate: 1800 },
       headers: {
-        "User-Agent": "NelviusGreyTech/1.0 (+https://nelviusgrey.com.ng)",
+        "User-Agent": `NelviusGreyTech/1.0 (+${SITE_URL})`,
       },
     });
 

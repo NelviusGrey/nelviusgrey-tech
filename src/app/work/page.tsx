@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import { FinalCta } from "@/components/sections/final-cta";
 import { ProjectExhibition } from "@/components/sections/project-exhibition";
 import { PageHeader } from "@/components/ui/page-header";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Work",
   description:
     "Selected work and solution concepts from NelviusGrey Tech across ClimateTech, data systems, social impact, automation and web experiences.",
-};
+  path: "/work",
+});
 
 export default function WorkPage() {
   return (

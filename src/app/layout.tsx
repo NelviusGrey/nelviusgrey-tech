@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { BackToTop } from "@/components/layout/back-to-top";
 import { Footer } from "@/components/layout/footer";
 import { BrandLoader } from "@/components/layout/brand-loader";
@@ -8,17 +9,20 @@ import { PageProgress } from "@/components/layout/page-progress";
 import { SiteBackground } from "@/components/layout/site-background";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { LenisProvider } from "@/components/providers/lenis-provider";
-import { siteConfig } from "@/lib/constants";
+import { SITE_URL, siteConfig } from "@/lib/constants";
+import { absoluteUrl } from "@/lib/seo";
 import "./globals.css";
 
+const homepageDescription =
+  "NelviusGrey Tech designs digital products, data systems, automation tools, ClimateTech platforms and technology infrastructure for businesses, institutions and impact-driven organisations.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "NelviusGrey Tech | Intelligent Digital Systems for Real-World Progress",
     template: "%s | NelviusGrey Tech",
   },
-  description:
-    "NelviusGrey Tech designs digital products, data systems, automation tools, ClimateTech platforms and technology infrastructure for businesses, institutions and impact-driven organisations.",
+  description: homepageDescription,
   keywords: [
     "NelviusGrey Tech",
     "technology company Nigeria",
@@ -35,15 +39,14 @@ export const metadata: Metadata = {
   creator: "NelviusGrey Tech",
   openGraph: {
     title: "NelviusGrey Tech | Intelligent Digital Systems for Real-World Progress",
-    description:
-      "Digital products, data platforms and intelligent infrastructure for organisations building a better future.",
-    url: siteConfig.url,
+    description: homepageDescription,
+    url: SITE_URL,
     siteName: "NelviusGrey Tech",
     locale: "en_NG",
     type: "website",
     images: [
       {
-        url: "/brand/logo-mark.png",
+        url: absoluteUrl(siteConfig.brand.logoPath),
         width: 1200,
         height: 630,
         alt: "NelviusGrey Tech logo mark",
@@ -52,11 +55,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NelviusGrey Tech",
-    description: "Intelligent digital systems for real-world progress.",
+    title: "NelviusGrey Tech | Intelligent Digital Systems for Real-World Progress",
+    description: homepageDescription,
+    images: [
+      {
+        url: absoluteUrl(siteConfig.brand.logoPath),
+        alt: "NelviusGrey Tech logo mark",
+      },
+    ],
   },
   alternates: {
-    canonical: siteConfig.url,
+    canonical: SITE_URL,
   },
   icons: {
     icon: "/favicon.ico",
@@ -71,8 +80,9 @@ export default function RootLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: siteConfig.name,
-    url: siteConfig.url,
+    url: SITE_URL,
     slogan: siteConfig.tagline,
     founder: {
       "@type": "Person",
@@ -80,7 +90,7 @@ export default function RootLayout({
       jobTitle: siteConfig.founder.title,
       sameAs: [siteConfig.links.founderLinkedIn],
     },
-    logo: new URL(siteConfig.brand.logoPath, siteConfig.url).toString(),
+    logo: absoluteUrl(siteConfig.brand.logoPath),
     address: {
       "@type": "PostalAddress",
       streetAddress: "No. 8 Oseni Liadi Street, Okota, Isolo",
@@ -125,6 +135,7 @@ export default function RootLayout({
           <BackToTop />
           <CustomCursor />
         </LenisProvider>
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

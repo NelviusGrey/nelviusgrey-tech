@@ -6,12 +6,14 @@ import { BrandPhoto } from "@/components/media/brand-photo";
 import { ContactForm } from "@/components/sections/contact-form";
 import { PageHeader } from "@/components/ui/page-header";
 import { projectEntryPaths, serviceCapabilities, siteConfig } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
   description:
     "Contact NelviusGrey Tech for digital products, data systems, ClimateTech, MEL systems, AI automation and technology advisory.",
-};
+  path: "/contact",
+});
 
 const contactOptions = [
   {

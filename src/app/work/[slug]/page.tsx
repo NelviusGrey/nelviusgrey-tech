@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/sections/final-cta";
 import { PageHeader } from "@/components/ui/page-header";
 import { getWorkCase, workCases, workProof } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return workCases.map((item) => ({ slug: item.slug }));
@@ -23,15 +24,13 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return createPageMetadata({
     title: item.title,
     description: item.summary,
-    openGraph: {
-      title: `${item.title} | NelviusGrey Tech`,
-      description: item.summary,
-      images: [{ url: item.image, alt: item.title }],
-    },
-  };
+    path: `/work/${item.slug}`,
+    image: item.image,
+    imageAlt: item.title,
+  });
 }
 
 export default async function WorkCasePage({

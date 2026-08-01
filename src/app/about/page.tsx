@@ -9,12 +9,14 @@ import { ProcessJourney } from "@/components/sections/narrative-systems";
 import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { values } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About",
   description:
     "Learn about NelviusGrey Tech, its Lagos roots, founder story, mission, values and approach to responsible innovation.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

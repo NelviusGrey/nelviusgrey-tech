@@ -1,8 +1,10 @@
+export const SITE_URL = "https://www.nelviusgreytech.com.ng";
+
 export const siteConfig = {
   name: "NelviusGrey Tech",
   tagline: "Technology for Change. Systems for the Future.",
   shortTagline: "Smart Solutions. Bold Designs.",
-  url: "https://nelviusgrey.com.ng",
+  url: SITE_URL,
   legacyUrl: "https://nelviusgreytech.wixsite.com/nelviusgrey-tech",
   address: "No. 8 Oseni Liadi Street, Okota, Isolo, Lagos, Nigeria",
   phone: ["+234 904 370 8371", "+234 903 530 8940"],

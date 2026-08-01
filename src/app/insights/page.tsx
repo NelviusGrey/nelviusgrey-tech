@@ -5,12 +5,14 @@ import Link from "next/link";
 import { NewsExperience } from "@/components/news/news-experience";
 import { PageHeader } from "@/components/ui/page-header";
 import { insightCategories, insights } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Insights",
   description:
     "NelviusGrey Tech insights on social impact technology, data systems, ClimateTech, AI automation and digital systems.",
-};
+  path: "/insights",
+});
 
 export default function InsightsPage() {
   return (

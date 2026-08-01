@@ -2,11 +2,13 @@
 
 import { PageHeader } from "@/components/ui/page-header";
 import { legalContent } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Terms and Conditions",
   description: "Website terms and conditions for NelviusGrey Tech.",
-};
+  path: "/terms",
+});
 
 export default function TermsPage() {
   const content = legalContent.terms;

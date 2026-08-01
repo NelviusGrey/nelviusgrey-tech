@@ -5,12 +5,14 @@ import { SectorSwitcher } from "@/components/sections/sector-switcher";
 import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { sectorSolutions } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Solutions",
   description:
     "Industry and operational solution areas for climate, NGOs, agriculture, financial services, SMEs and public institutions.",
-};
+  path: "/solutions",
+});
 
 export default function SolutionsPage() {
   return (

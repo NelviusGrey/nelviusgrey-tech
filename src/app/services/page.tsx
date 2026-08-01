@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import { FinalCta } from "@/components/sections/final-cta";
 import { InteractiveServices } from "@/components/sections/interactive-services";
 import { PageHeader } from "@/components/ui/page-header";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Services",
   description:
     "Explore NelviusGrey Tech capabilities across digital products, data systems, ClimateTech, MEL systems, AI automation and technology advisory.",
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (

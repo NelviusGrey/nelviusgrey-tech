@@ -2,11 +2,13 @@
 
 import { PageHeader } from "@/components/ui/page-header";
 import { legalContent, siteConfig } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Privacy Policy",
   description: "Privacy policy for NelviusGrey Tech website enquiries and services.",
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   const content = legalContent.privacy;
