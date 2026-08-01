@@ -2,7 +2,7 @@ import { Download, Facebook, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link";
 
 import { BrandMark } from "@/components/ui/brand-mark";
-import { navLinks, serviceCapabilities, siteConfig } from "@/lib/constants";
+import { navLinks, serviceCapabilities, serviceLandingHref, siteConfig } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -42,7 +42,7 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-white">Capabilities</h3>
           <div className="mt-4 grid gap-3">
             {serviceCapabilities.map((service) => (
-              <Link prefetch={false} key={service.slug} href={`/services#${service.slug}`} className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
+              <Link prefetch={false} key={service.slug} href={serviceLandingHref(service.slug)} className="text-sm text-white/55 transition hover:text-[color:var(--brand-green)]">
                 {service.title}
               </Link>
             ))}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/ui/page-header";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { getInsight, insights } from "@/lib/constants";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 
@@ -73,6 +74,7 @@ export default async function InsightPage({
 
   return (
     <>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Insights", href: "/insights" }, { label: article.title }]} />
       <PageHeader
         eyebrow={`${article.category} / ${article.readingTime}`}
         title={article.title}

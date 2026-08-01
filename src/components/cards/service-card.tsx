@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/animations/reveal";
 import { Icon } from "@/components/ui/icon";
-import type { serviceCapabilities } from "@/lib/constants";
+import { serviceLandingHref, type serviceCapabilities } from "@/lib/constants";
 
 type Service = (typeof serviceCapabilities)[number];
 
@@ -19,7 +19,7 @@ export function ServiceCard({ service, index }: { service: Service; index: numbe
       <p className="mt-4 flex-1 text-sm leading-7 text-white/62">{service.summary}</p>
       <Link
         prefetch={false}
-        href={`/services#${service.slug}`}
+        href={serviceLandingHref(service.slug)}
         className="mt-7 text-sm font-semibold text-[color:var(--brand-green)] transition hover:text-white"
       >
         View deliverables

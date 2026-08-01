@@ -6,6 +6,7 @@ import { NewsExperience } from "@/components/news/news-experience";
 import { PageHeader } from "@/components/ui/page-header";
 import { insightCategories, insights } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Insights",
@@ -17,6 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function InsightsPage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Insights" }]} />
       <PageHeader
         eyebrow="Insights"
         title="Notes on building digital systems that survive beyond launch."

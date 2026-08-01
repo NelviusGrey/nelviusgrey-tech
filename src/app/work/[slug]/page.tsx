@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { FinalCta } from "@/components/sections/final-cta";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHeader } from "@/components/ui/page-header";
 import { getWorkCase, workCases, workProof } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
@@ -55,6 +56,7 @@ export default async function WorkCasePage({
 
   return (
     <>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work", href: "/work" }, { label: item.title }]} />
       <PageHeader eyebrow={item.category} title={item.title} description={item.summary} variant="gallery" />
 
       <section className="px-4 py-8 sm:px-6 lg:px-8">

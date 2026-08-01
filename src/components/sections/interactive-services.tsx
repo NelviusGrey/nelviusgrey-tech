@@ -8,7 +8,7 @@ import { useState } from "react";
 import { BrandPhoto } from "@/components/media/brand-photo";
 import { HoneycombNetwork } from "@/components/visual/honeycomb-network";
 import { Icon } from "@/components/ui/icon";
-import { serviceCapabilities, type ServiceCapability } from "@/lib/constants";
+import { serviceCapabilities, serviceLandingHref, type ServiceCapability } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 function ServiceDetail({
@@ -84,7 +84,7 @@ function ServiceDetail({
         </div>
         <Link
           prefetch={false}
-          href={compact ? `/services#${service.slug}` : "/contact"}
+      href={compact ? serviceLandingHref(service.slug) : "/contact"}
           data-cursor="Explore"
           className="group inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--brand-green)]"
         >

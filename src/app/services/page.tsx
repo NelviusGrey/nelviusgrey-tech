@@ -4,6 +4,7 @@ import { FinalCta } from "@/components/sections/final-cta";
 import { InteractiveServices } from "@/components/sections/interactive-services";
 import { PageHeader } from "@/components/ui/page-header";
 import { createPageMetadata } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Services",
@@ -15,6 +16,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function ServicesPage() {
   return (
     <>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services" }]} />
       <PageHeader
         eyebrow="Services"
         title="Capabilities for organisations that need technology to become operational infrastructure."

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { insights, navLinks, siteConfig, workCases } from "@/lib/constants";
+import { insights, navLinks, serviceLandingPages, siteConfig, workCases } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
@@ -32,5 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...workEntries, ...insightEntries];
+  const serviceEntries = serviceLandingPages.map((item) => ({
+    url: new URL(`/services/${item.slug}`, siteConfig.url).toString(),
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...serviceEntries, ...workEntries, ...insightEntries, { url: new URL("/authors/ighere-g-nelson", siteConfig.url).toString(), lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 }];
 }
