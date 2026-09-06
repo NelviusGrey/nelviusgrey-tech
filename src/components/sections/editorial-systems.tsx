@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { insights, siteConfig } from "@/lib/constants";
+import { publicInsights as insights, siteConfig } from "@/lib/constants";
 
-const disciplines = ["Digital products", "Data systems", "Climate intelligence", "Social-impact technology"];
+const disciplines = ["Digital products", "Data systems", "AI automation", "Social-impact technology"];
 
 export function FounderSignal() {
   const [active, setActive] = useState(0);
@@ -23,7 +23,7 @@ export function FounderSignal() {
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-[color:var(--brand-green)]">Founder / disciplines</p>
           <h2 className="mt-6 font-display text-5xl font-light text-white sm:text-7xl">Ighere G. Nelson</h2>
           <p className="mt-3 text-white/54">{siteConfig.founder.title}</p>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/66">A Computer Science graduate and technology builder working where product, data, climate and social impact meet.</p>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/66">A Computer Science graduate and technology builder working where product, data, automation and social impact meet.</p>
           <div className="mt-8 grid gap-px bg-white/10 sm:grid-cols-2">
             {disciplines.map((item, index) => (
               <button key={item} onPointerEnter={() => setActive(index)} onFocus={() => setActive(index)} onClick={() => setActive(index)} className={`min-h-20 bg-[#050705] p-4 text-left text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-[color:var(--brand-green)] ${active === index ? "text-white" : "text-white/48"}`}>

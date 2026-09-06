@@ -28,7 +28,7 @@ export const rssSources: NewsSource[] = [
     feedUrl: "https://disruptafrica.com/feed/",
     homepage: "https://disruptafrica.com",
     region: "Africa",
-    categories: ["Latest", "Africa Tech", "FinTech", "ClimateTech"],
+    categories: ["Latest", "Africa Tech", "FinTech"],
   },
   {
     name: "IT News Africa",
@@ -46,6 +46,5 @@ export const gdeltQueries: Record<NewsCategory, string> = {
   "Africa Tech": "(Africa technology OR African startups OR telecommunications Africa OR digital transformation Africa)",
   "Artificial Intelligence": "(African artificial intelligence OR AI Africa OR AI Nigeria)",
   FinTech: "(Nigeria fintech OR African fintech OR digital finance Africa)",
-  ClimateTech: "(African climate technology OR climate tech Africa OR climate data Africa)",
   Cybersecurity: "(African cybersecurity OR cybersecurity Nigeria OR cyber security Africa)",
 };

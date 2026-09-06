@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { insights, navLinks, serviceLandingPages, siteConfig, workCases } from "@/lib/constants";
+import { publicInsights as insights, navLinks, serviceLandingPages, siteConfig, workCases } from "@/lib/constants";
 
 export const dynamic = "force-static";
 

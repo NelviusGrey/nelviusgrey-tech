@@ -4,7 +4,7 @@ import { SearchX } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
-import { insightCategories, insights, type InsightCategory } from "@/lib/constants";
+import { insightCategories, publicInsights as insights, type InsightCategory } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
 
 type TechArticle = {

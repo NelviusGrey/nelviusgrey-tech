@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Work",
   description:
-    "Selected work and solution concepts from NelviusGrey Tech across ClimateTech, data systems, social impact, automation and web experiences.",
+    "Selected work and internal product concepts from NelviusGrey Tech across digital products, data systems, automation and web experiences.",
   path: "/work",
 });
 
@@ -18,7 +18,7 @@ export default function WorkPage() {
       <PageHeader
         eyebrow="Work"
         title="Selected work and solution concepts, presented with honest context."
-        description="A filterable index of product directions, data systems, climate-intelligence concepts, social-impact systems, business tools and web experiences."
+        description="A filterable index of product directions, data systems, social-impact systems, business tools and web experiences."
         variant="gallery"
       />
 

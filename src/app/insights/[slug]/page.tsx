@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { PageHeader } from "@/components/ui/page-header";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { getInsight, insights } from "@/lib/constants";
+import { getInsight, publicInsights as insights } from "@/lib/constants";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {

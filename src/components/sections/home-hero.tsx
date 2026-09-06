@@ -16,7 +16,7 @@ const HeroSculpture = dynamic(
 );
 
 const proof = [
-  { name: "FINZ / FINT", detail: "Climate intelligence", href: "/work/finz-fint-climate-finance-platform" },
+  { name: "ShapBill", detail: "Business productivity", href: "/work/shapbill" },
   { name: "ShapBill", detail: "Invoicing product", href: "/work/shapbill" },
   { name: "Nelvius Bank", detail: "Digital banking", href: "/work/nelvius-bank" },
   { name: "Exports Royale", detail: "Trade enablement", href: "/work/exports-royale" },
@@ -103,7 +103,7 @@ export function HomeHero() {
               transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="mt-7 max-w-xl text-base leading-8 text-white/58 sm:text-lg"
             >
-              We design and engineer secure digital products, climate-intelligence
+              We design and engineer secure digital products, data systems and intelligent workflows
               platforms and operational systems that turn complexity into clarity—and
               strategy into measurable impact.
             </motion.p>

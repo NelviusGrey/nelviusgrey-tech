@@ -4,7 +4,6 @@ export const newsCategories = [
   "Africa Tech",
   "Artificial Intelligence",
   "FinTech",
-  "ClimateTech",
   "Cybersecurity",
 ] as const;
 

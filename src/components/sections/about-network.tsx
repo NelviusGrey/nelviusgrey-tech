@@ -9,7 +9,7 @@ const territories = [
   { key: "People", title: "Human context first", copy: "We begin with the people doing the work, the decisions they face and the realities the system must respect.", tag: "Discovery" },
   { key: "Products", title: "Useful by design", copy: "We turn complex requirements into products that feel clear, capable and natural in everyday use.", tag: "Experience" },
   { key: "Data", title: "Evidence people can trust", copy: "We structure information so teams can understand performance, act confidently and explain what changed.", tag: "Intelligence" },
-  { key: "Climate", title: "Context-rich intelligence", copy: "We connect climate signals with finance, place, exposure and institutional decision-making.", tag: "ClimateTech" },
+  { key: "Operations", title: "Context-rich intelligence", copy: "We connect data, workflows and institutional decision-making into systems people can use.", tag: "Data systems" },
   { key: "Systems", title: "Built to remain useful", copy: "Architecture, workflows and handover are designed for life after launch—not only the launch itself.", tag: "Engineering" },
 ] as const;
 
@@ -27,7 +27,7 @@ export function AboutNetwork() {
           <div>
             <p className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-[color:var(--brand-green)]">Living network / how we think</p>
             <h2 className="mt-5 font-display text-5xl font-light leading-[.96] tracking-[-.035em] text-white sm:text-6xl">Connected thinking.<br /><span className="italic text-white/52">Useful outcomes.</span></h2>
-            <p className="mt-6 max-w-lg text-base leading-8 text-white/56">NelviusGrey works where people, products, data, climate and durable technology meet. Select a territory to explore the relationship.</p>
+            <p className="mt-6 max-w-lg text-base leading-8 text-white/56">NelviusGrey works where people, products, data and durable technology meet. Select a territory to explore the relationship.</p>
             <AnimatePresence mode="wait">
               <motion.div key={selected.key} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: reduced ? 0 : .4 }} className="mt-8 border-l border-[color:var(--brand-green)] pl-5">
                 <span className="font-mono text-[0.62rem] uppercase tracking-[.24em] text-[color:var(--champagne)]">{selected.tag}</span>

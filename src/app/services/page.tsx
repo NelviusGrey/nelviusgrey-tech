@@ -9,7 +9,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 export const metadata: Metadata = createPageMetadata({
   title: "Services",
   description:
-    "Explore NelviusGrey Tech capabilities across digital products, data systems, ClimateTech, MEL systems, AI automation and technology advisory.",
+    "Explore NelviusGrey Tech capabilities across digital products, data systems, business platforms, social-impact technology, AI automation and technology advisory.",
   path: "/services",
 });
 

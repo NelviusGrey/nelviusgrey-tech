@@ -14,7 +14,7 @@ import { absoluteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const homepageDescription =
-  "NelviusGrey Tech designs digital products, data systems, automation tools, ClimateTech platforms and technology infrastructure for businesses, institutions and impact-driven organisations.";
+  "NelviusGrey Tech designs intelligent digital products, data systems and automation tools for organisations solving real operational problems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     "technology company Nigeria",
     "web app development Lagos",
     "data dashboards",
-    "climate-tech",
     "NGO technology systems",
     "business automation",
     "AI automation",

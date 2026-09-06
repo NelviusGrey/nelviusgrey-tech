@@ -4,14 +4,14 @@ import Link from "next/link";
 
 import { NewsExperience } from "@/components/news/news-experience";
 import { PageHeader } from "@/components/ui/page-header";
-import { insightCategories, insights } from "@/lib/constants";
+import { insightCategories, publicInsights as insights } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Insights",
   description:
-    "NelviusGrey Tech insights on social impact technology, data systems, ClimateTech, AI automation and digital systems.",
+    "NelviusGrey Tech insights on digital product engineering, data systems, AI automation, social-impact technology and business systems.",
   path: "/insights",
 });
 
@@ -22,7 +22,7 @@ export default function InsightsPage() {
       <PageHeader
         eyebrow="Insights"
         title="Notes on building digital systems that survive beyond launch."
-        description="Internally authored thinking about social impact technology, useful organisational data, climate intelligence, practical AI and durable digital infrastructure."
+        description="Internally authored thinking about social impact technology, useful organisational data, practical AI and durable digital infrastructure."
         variant="editorial"
       />
 

@@ -3,7 +3,6 @@ import type { NewsArticle, NewsCategory } from "@/lib/news/types";
 const categorySignals: Array<[NewsCategory, RegExp]> = [
   ["Artificial Intelligence", /\b(ai|artificial intelligence|machine learning|genai|generative ai)\b/i],
   ["FinTech", /\b(fintech|bank|payment|payments|digital finance|insurtech|crypto)\b/i],
-  ["ClimateTech", /\b(climate|carbon|energy|solar|renewable|sustainability|emissions)\b/i],
   ["Cybersecurity", /\b(cybersecurity|cyber security|security breach|malware|fraud|phishing)\b/i],
   ["Nigeria Tech", /\b(nigeria|lagos|abuja|nigerian)\b/i],
   ["Africa Tech", /\b(africa|african|kenya|ghana|south africa|egypt|senegal|rwanda)\b/i],

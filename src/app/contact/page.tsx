@@ -11,7 +11,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact NelviusGrey Tech for digital products, data systems, ClimateTech, MEL systems, AI automation and technology advisory.",
+    "Contact NelviusGrey Tech for digital products, data systems, AI automation, business platforms and technology advisory.",
   path: "/contact",
 });
 

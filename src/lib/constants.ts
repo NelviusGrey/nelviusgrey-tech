@@ -65,7 +65,7 @@ export type IconName =
 export const capabilityTicker = [
   "Digital Products",
   "Data Systems",
-  "ClimateTech",
+  "Business Platforms",
   "GIS",
   "Automation",
   "Social Impact",
@@ -121,27 +121,14 @@ export const serviceCapabilities = [
     related: ["Data modelling", "Power BI/Python", "MEL", "Automation", "Executive reporting"],
   },
   {
-    slug: "climatetech-geospatial",
-    title: "ClimateTech and Geospatial Solutions",
-    icon: "Leaf" satisfies IconName,
-    summary:
-      "Climate-risk, emissions, GIS, and environmental intelligence interfaces for institutions working on sustainability and resilience.",
-    problems: [
-      "Hard-to-interpret climate data",
-      "Weak spatial visibility",
-      "Manual emissions or portfolio analysis",
-      "Limited MRV and environmental reporting structure",
-    ],
-    deliverables: [
-      "Climate-risk platforms",
-      "Emissions tools",
-      "Geospatial monitoring",
-      "Remote-sensing interfaces",
-      "Portfolio analysis",
-      "MRV and environmental-data systems",
-    ],
-    audience: "Climate teams, development organizations, finance actors, public institutions, and sustainability programmes.",
-    related: ["GIS", "Climate analytics", "Data visualization", "Reporting", "Environmental intelligence"],
+    slug: "business-operations-platforms",
+    title: "Business Operations Platforms",
+    icon: "Workflow" satisfies IconName,
+    summary: "Internal tools and customer-facing systems that bring approvals, records, service delivery and reporting into one dependable workflow.",
+    problems: ["Spreadsheet-heavy approvals", "Scattered customer records", "Unclear service status", "Manual operational reporting"],
+    deliverables: ["Operations portals", "Approval workflows", "CRM-like internal tools", "Inventory and service systems", "Operational reporting"],
+    audience: "SMEs, professional services firms, trade businesses, education teams and growing operations.",
+    related: ["Workflow design", "Portals", "Integrations", "Reporting", "Permissions"],
   },
   {
     slug: "social-impact-mel",
@@ -216,7 +203,7 @@ export const serviceCapabilities = [
 
 export type ServiceCapability = (typeof serviceCapabilities)[number];
 
-export const serviceLandingPages = [
+const allServiceLandingPages = [
   { slug: "custom-software-development", title: "Custom Software Development Company in Nigeria", description: "Custom software development in Lagos for organisations that need dependable operational tools, portals and workflows.", promise: "Build software around the way your organisation actually works.", problem: "Off-the-shelf tools can leave important processes fragmented, manual or impossible to explain. We turn those workflows into maintainable digital products.", audience: "Growing businesses, NGOs, institutions and teams with a workflow that deserves a clearer system.", capabilities: ["Product discovery", "Workflow modelling", "Web application development", "API and integration planning"], deliverables: ["Internal platforms", "Client portals", "Workflow applications", "Technical documentation"], approach: "We begin with the users, decisions and constraints, then shape a focused product scope, interface system and implementation plan.", relatedWork: [{ label: "ShapBill product", href: "/work/shapbill" }, { label: "Nelvius Bank", href: "/work/nelvius-bank" }] },
   { slug: "web-mobile-app-development", title: "Web and Mobile App Development in Lagos", description: "Web and mobile app development for Nigerian businesses, institutions and founders that need clear, responsive digital products.", promise: "Design and ship digital experiences people can use with confidence.", problem: "A digital product loses value when its navigation, content, performance and next actions do not work together.", audience: "Founders, service businesses, NGOs and institutions launching or improving a web or mobile experience.", capabilities: ["Responsive web apps", "Mobile product UX", "Design systems", "Conversion journeys"], deliverables: ["Marketing websites", "Progressive web experiences", "Mobile product concepts", "Accessible interface patterns"], approach: "We connect brand, content hierarchy and interaction design before implementation, with responsive behaviour treated as a first-class requirement.", relatedWork: [{ label: "Exports Royale", href: "/work/exports-royale" }, { label: "Nelvius Bank", href: "/work/nelvius-bank" }] },
   { slug: "data-systems-decision-intelligence", title: "Data Dashboard and MIS Development in Nigeria", description: "Data systems, dashboards and management information systems that help Nigerian organisations turn scattered records into decisions.", promise: "Make organisational data understandable, owned and useful.", problem: "Dashboards cannot repair unclear definitions, fragmented ownership or reporting workflows that no one trusts.", audience: "Leadership teams, MEL units, operations teams and programmes working with recurring performance data.", capabilities: ["Data modelling", "Dashboard UX", "Reporting workflows", "Decision intelligence"], deliverables: ["MIS platforms", "Executive dashboards", "Indicator libraries", "Reporting automation"], approach: "We clarify definitions and decision moments first, then create the data structures and visual layers that support them.", relatedWork: [{ label: "SBTi temperature scoring", href: "/work/sbti-temperature-scoring-tool" }, { label: "FINZ/FINT platform", href: "/work/finz-fint-climate-finance-platform" }] },
@@ -225,6 +212,7 @@ export const serviceLandingPages = [
   { slug: "ai-workflow-business-automation", title: "AI Business Automation in Nigeria", description: "Practical AI business automation and workflow design for Nigerian teams that want less repetitive administration and stronger information flow.", promise: "Automate the boring work without outsourcing judgement to a black box.", problem: "Repetitive document, reporting and knowledge tasks consume time while remaining too important to handle carelessly.", audience: "SMEs, operations teams, service businesses, founders and administrative teams.", capabilities: ["Workflow mapping", "Document processing", "Internal knowledge tools", "Reporting automation"], deliverables: ["Automated handoffs", "AI-assisted workflows", "Document pipelines", "Internal assistants"], approach: "We identify high-friction, low-risk tasks first, then introduce automation with review points, clear ownership and sensible fallbacks.", relatedWork: [{ label: "ShapBill product", href: "/work/shapbill" }] },
   { slug: "digital-transformation-technology-advisory", title: "Digital Transformation Consulting in Nigeria", description: "Digital transformation consulting and technology advisory in Lagos for organisations planning complex digital work.", promise: "Make technology investment clearer before implementation begins.", problem: "Disconnected tools and vague strategy make digital projects expensive to adopt and difficult to sustain.", audience: "Executives, institutions, programme leaders and growing teams planning meaningful digital change.", capabilities: ["Digital strategy", "Product discovery", "System architecture", "Technical assessment"], deliverables: ["Discovery reports", "Roadmaps", "Architecture guidance", "Implementation plans"], approach: "We align desired outcomes, existing constraints, user adoption and technical decisions into a practical path forward.", relatedWork: [{ label: "CLIDAFIG digital presence", href: "/work/clidafdig-enterprise-digital-presence" }, { label: "Excel Expert website", href: "/work/excel-expert-cleaning-services" }] },
 ] as const;
+export const serviceLandingPages = allServiceLandingPages.filter((item) => item.slug !== "climatetech-geospatial-solutions");
 
 export function serviceLandingHref(slug: string) {
   const map: Record<string, string> = { "digital-products-platforms": "web-mobile-app-development", "data-systems-decision-intelligence": "data-systems-decision-intelligence", "climatetech-geospatial": "climatetech-geospatial-solutions", "social-impact-mel": "ngo-mel-data-management-systems", "ai-workflows-automation": "ai-workflow-business-automation", "technology-advisory": "digital-transformation-technology-advisory" };
@@ -232,16 +220,6 @@ export function serviceLandingHref(slug: string) {
 }
 
 export const sectorSolutions = [
-  {
-    slug: "climate-sustainability",
-    title: "Climate and Sustainability",
-    challenge: "Climate teams need clearer ways to collect, interpret, map, and communicate environmental intelligence.",
-    painPoints: ["Fragmented climate data", "Manual reporting", "Weak spatial evidence", "Difficult portfolio analysis"],
-    solutionTypes: ["Climate dashboards", "GIS tools", "Emissions workflows", "Risk intelligence interfaces"],
-    workflow: "Collect project or portfolio data, structure indicators, visualize risks and emissions, then generate decision-ready reporting views.",
-    visual: "A green ridge-map of data points becoming a climate intelligence layer.",
-    relatedProjects: ["finz-fint-climate-finance-platform", "sbti-temperature-scoring-tool", "urban-heat-risk-intelligence-tool"],
-  },
   {
     slug: "ngos-development",
     title: "NGOs and Development Organisations",
@@ -337,7 +315,6 @@ export const workFilters = [
   "All",
   "Digital Products",
   "Data",
-  "Climate",
   "Social Impact",
   "Automation",
   "Web Experiences",
@@ -345,7 +322,7 @@ export const workFilters = [
 
 export type WorkFilter = (typeof workFilters)[number];
 
-export const workCases = [
+const allWorkCases = [
   {
     slug: "finz-fint-climate-finance-platform",
     title: "FINZ/FINT Climate Finance Platform",
@@ -543,6 +520,8 @@ export const workCases = [
   },
 ] as const;
 
+const restrictedWorkSlugs = new Set(["finz-fint-climate-finance-platform", "sbti-temperature-scoring-tool", "urban-heat-risk-intelligence-tool"]);
+export const workCases = allWorkCases.filter((item) => !restrictedWorkSlugs.has(item.slug));
 export type WorkCase = (typeof workCases)[number];
 
 export const workProof: Record<
@@ -602,11 +581,6 @@ export const projectEntryPaths = [
     service: "Data Systems and Decision Intelligence",
   },
   {
-    label: "Develop a climate platform",
-    description: "Climate intelligence, financed emissions, geospatial and risk systems.",
-    service: "ClimateTech and Geospatial Solutions",
-  },
-  {
     label: "Automate a workflow",
     description: "Practical AI, document flows and repetitive business operations.",
     service: "AI Workflows and Business Automation",
@@ -622,7 +596,6 @@ export const insightCategories = [
   "All",
   "Social Impact",
   "Data",
-  "Climate Intelligence",
   "AI Automation",
   "Digital Systems",
 ] as const;
@@ -717,7 +690,8 @@ export const insights = [
   },
 ] as const;
 
-export type Insight = (typeof insights)[number];
+export const publicInsights = insights.filter((item) => item.category !== "Climate Intelligence");
+export type Insight = (typeof publicInsights)[number];
 
 export const legalContent = {
   privacy: {
@@ -779,5 +753,5 @@ export function getWorkCase(slug: string) {
 }
 
 export function getInsight(slug: string) {
-  return insights.find((item) => item.slug === slug);
+  return publicInsights.find((item) => item.slug === slug);
 }

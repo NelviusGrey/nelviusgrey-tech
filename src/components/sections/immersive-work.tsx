@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 
 const proof = [
-  ["FINZ / FINT", "Climate intelligence platform"],
+  ["ShapBill", "Business productivity product"],
   ["ShapBill", "Invoicing and billing product"],
   ["Nelvius Bank", "Digital banking platform"],
   ["Exports Royale", "Trade and export experience"],
@@ -15,7 +15,7 @@ const proof = [
 ] as const;
 
 const showcases = [
-  { name: "FINZ / FINT", type: "Platform", copy: "Climate intelligence for a resilient future.", image: "/images/work/finz-fint/portfolio-overview-dark.png", href: "/work/finz-fint-climate-finance-platform" },
+  { name: "ShapBill", type: "NelviusGrey Product", copy: "A focused workspace for invoices, receipts and everyday business administration.", image: "/images/work/shapbill/product-presentation.png", href: "/work/shapbill" },
   { name: "ShapBill", type: "Product", copy: "Modern invoicing made effortless.", image: "/images/work/shapbill/desktop-dashboard.png", href: "/work/shapbill" },
   { name: "Nelvius Bank", type: "Product", copy: "Digital banking, reimagined.", image: "/images/work/nelvius-bank/mobile-features.png", href: "/work/nelvius-bank" },
 ] as const;
